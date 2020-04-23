@@ -1,5 +1,6 @@
 # WeatherWear
 
+
 ## About WeatherWear
 Do you ever go step outside, only to realize you're unprepared for unexpected weather conditions? You'd have to go back inside to change what you're wearing, and maybe even bring an umbrella. WeatherWear is intended to help people get clothing recommendations based on weather conditions, such as temperature, humidity, wind speed, and precipitation. 
 
@@ -19,7 +20,7 @@ After weather information is received, the information is parsed and the program
 
 * Ability to save past results/queries
 
-
+* Ability to recommend multiple locations at one time. This would be useful when traveling. 
 
 ## How to get started
 You will need npm on your computer. 
@@ -33,3 +34,8 @@ You will to go into the client folder and run `npm install`
  1. in the client folder, run `npm start` and enter `y` when prompted. This will locally start your client app on port 3001. 
 
  
+## Technologies used
+ * React.js
+ * Express.js
+ * PostgreSQL
+ * APIs & more!
