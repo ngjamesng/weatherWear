@@ -20,18 +20,16 @@ After weather information is received, the information is parsed and the program
 
 * Ability to save past results/queries
 
-* Ability to recommend multiple locations at one time. This would be useful when traveling. 
+* Ability to recommend multiple locations at one time, across different days. This would be useful when traveling. 
 
 ## How to get started
-You will need npm on your computer. 
-You will to go into the server folder and run `npm install`
-You will to go into the client folder and run `npm install`
+1. You will need npm on your computer. 
+2. In the terminal, you will to go into the server folder and run `npm install`
+3. In the Terminal, you will to go into the client folder and run `npm install`
 
-### Server
- 1. in the server folder, run `npm start`. This will locally start your server on port 3000. 
-
-### Client
- 1. in the client folder, run `npm start` and enter `y` when prompted. This will locally start your client app on port 3001. 
+### Server/Client servers
+ 1. In the terminal, run `cd server` to get into the server folder, and run `npm start`. This will locally start your server on port 3000. 
+ 2. In  a separate terminal window, run `cd client` to get into the client folder, and run `npm start` and enter `y` when prompted. This will locally start your client app on port 3001. 
 
  
 ## Technologies used
