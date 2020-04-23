@@ -23,9 +23,13 @@ After weather information is received, the information is parsed and the program
 
 ## How to get started
 You will need npm on your computer. 
+You will to go into the server folder and run `npm install`
+You will to go into the client folder and run `npm install`
 
 ### Server
-
+ 1. in the server folder, run `npm start`. This will locally start your server on port 3000. 
 
 ### Client
+ 1. in the client folder, run `npm start` and enter `y` when prompted. This will locally start your client app on port 3001. 
 
+ 
