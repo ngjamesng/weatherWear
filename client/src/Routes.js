@@ -1,9 +1,14 @@
 import React from "react";
+import Home from "./Home";
 import { Switch, Route, Redirect } from "react-router-dom";
-function Routes(){
-  return(
+function Routes() {
+  return (
     <>
-    <h1>ROUTES!!!!</h1>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
     </>
   )
 }
