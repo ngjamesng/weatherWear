@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 // import "./SiteNav.scss";
 import { Navbar, Nav } from "react-bootstrap";
 
@@ -12,9 +13,15 @@ function SiteNav() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="ml-auto">
         <Nav className="ml-auto">
-          <Nav.Link as={Link} to="/check">Check Weather </Nav.Link>
-          <Nav.Link as={Link} to="/results">Check Past Results </Nav.Link>
-          <Nav.Link as={Link} to="/about"> About </Nav.Link>
+          <LinkContainer to="/check">
+            <Nav.Link>Check Weather </Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/results">
+            <Nav.Link>Check Past Results </Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/about">
+            <Nav.Link> About </Nav.Link>
+          </LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

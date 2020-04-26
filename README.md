@@ -2,7 +2,7 @@
  ***Project is WIP***
 
 ## About WeatherWear
-Do you ever go step outside, only to realize you're unprepared for unexpected weather conditions? You'd have to go back inside to change what you're wearing, and maybe even bring an umbrella. WeatherWear is intended to help people get clothing recommendations based on weather conditions, such as temperature, humidity, wind speed, and precipitation. 
+Do you ever step outside, only to realize you're unprepared for unexpected weather conditions? You'd have to go back inside to change what you're wearing, and maybe even bring an umbrella. WeatherWear is intended to help people get clothing recommendations based on weather conditions, such as temperature, humidity, wind speed, and precipitation. 
 
 It allows you to find the weather conditions based on a location search, and this is done through an API call. 
 
