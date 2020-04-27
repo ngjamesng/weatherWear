@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./Home";
-import Check from "./Check";
+import WeatherForm from "./WeatherForm";
 import Results from "./Results";
 import About from "./About";
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -13,7 +13,7 @@ function Routes() {
           <Home />
         </Route>
         <Route exact path="/check">
-          <Check />
+          <WeatherForm />
         </Route>
         <Route exact path="/results">
           <Results />
