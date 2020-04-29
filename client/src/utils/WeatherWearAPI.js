@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 class WeatherWearAPI {
   static async request(endpoint, params = {}, verb = "get") {
@@ -28,14 +28,23 @@ class WeatherWearAPI {
       throw Array.isArray(message) ? message : [message];
     }
   }
-
+  /**get a list of past queries */
   static async getResults(data) {
     let res = await this.request(`results`, data);
     return res.data;
   }
+  /**get a single past weather query */
   static async getResult(id) {
     let res = await this.request(`results/${id}`);
     return res.data;
+  }
+
+  /**submit a query of location and date */
+  static async submitQuery(data) {
+    let res = await this.request(`weather`, data, "post" );
+    // console.log("DATA!", data);
+    // console.log("Data from server call: ", res.data);
+    return res;
   }
 }
 export default WeatherWearAPI;

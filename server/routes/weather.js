@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
+/** handle submission form from fronend */
+router.post("/", (req, res, next) => {
   try {
-    res.send("REACHED WEATHER API CALL!")
+    console.log(req.body);
+    res.json({ msg: "REACHED BACKEND API CALL!" });
   } catch (err) {
     return next(err);
   }

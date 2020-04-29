@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const ExpressError = require('./utils/expressError');
 const weatherRouter = require("./routes/weather");
-
+const cors = require("cors");
 app.use(express.json());
+app.use(cors());
+
 
 app.use("/weather", weatherRouter);
 
