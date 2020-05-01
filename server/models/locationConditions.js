@@ -24,7 +24,7 @@ class LocationConditions {
   }
 
   static async addCondition({ woeid, city_name, location_type, condition }) {
-    const { applicable_date, the_temp, wind_speed, weather_state_name } = condition;
+    const { applicable_date, the_temp, wind_speed, weather_state_name, weather_state_abbr } = condition;
     const locationsResponse = await db.query(`
       INSERT INTO locations (
         woeid, city_name, location_type
@@ -35,14 +35,15 @@ class LocationConditions {
     `, [woeid, city_name, location_type]);
     const conditionResponse = await db.query(`
     INSERT INTO conditions (
-      woeid, applicable_date, the_temp, wind_speed, weather_state_name
+      woeid, applicable_date, the_temp, wind_speed, weather_state_name, weather_state_abbr
     )
-    values ($1, $2, $3, $4, $5)
-    RETURNING id, woeid, applicable_date, the_temp, wind_speed, weather_state_name;
+    values ($1, $2, $3, $4, $5, $6)
+    RETURNING id, woeid, applicable_date, the_temp, wind_speed, weather_state_name, weather_state_abbr;
     `, [woeid, applicable_date,
       Math.round(the_temp),
       Math.round(wind_speed),
-      weather_state_name]);
+      weather_state_name,
+    weather_state_abbr]);
 
     const dbConditionResp = conditionResponse.rows[0];
     return dbConditionResp;
@@ -58,7 +59,8 @@ class LocationConditions {
         applicable_date, 
         the_temp, 
         wind_speed, 
-        weather_state_name 
+        weather_state_name, 
+        weather_state_abbr 
       FROM conditions
       JOIN locations ON conditions.woeid = locations.woeid
       WHERE conditions.id= $1`

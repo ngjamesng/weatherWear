@@ -15,5 +15,6 @@ CREATE TABLE conditions (
   applicable_date date, 
   the_temp integer, 
   wind_speed float,
-  weather_state_name text NOT NULL
+  weather_state_name text NOT NULL,
+  weather_state_abbr text NOT NULL
 );
