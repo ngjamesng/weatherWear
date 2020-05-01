@@ -1,7 +1,8 @@
 import React from "react";
 import Home from "./Home";
 import WeatherForm from "./WeatherForm";
-import Results from "./Results";
+import AllResults from "./AllResults";
+import Result from "./Result";
 import About from "./About";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -15,8 +16,11 @@ function Routes() {
         <Route exact path="/check">
           <WeatherForm />
         </Route>
+        <Route exact path="/results/:id">
+          <Result />
+        </Route>
         <Route exact path="/results">
-          <Results />
+          <AllResults />
         </Route>
         <Route exact path="/about">
           <About />

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Results() {
+function AllResults() {
   return (
     <h1>
       View past results here!
@@ -8,4 +8,4 @@ function Results() {
   )
 }
 
-export default Results;
+export default AllResults;

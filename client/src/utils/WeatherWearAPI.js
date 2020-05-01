@@ -31,12 +31,12 @@ class WeatherWearAPI {
   /**get a list of past queries */
   static async getResults(data) {
     let res = await this.request(`results`, data);
-    return res.data;
+    return res;
   }
   /**get a single past weather query */
   static async getResult(id) {
-    let res = await this.request(`results/${id}`);
-    return res.data;
+    let res = await this.request(`weather/${id}`);
+    return res;
   }
 
   /**submit a query of location and date */

@@ -24,7 +24,8 @@ function WeatherForm() {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     let response = await WeatherWearAPI.submitQuery(formData);
-    console.log("RESPONSE!", response)
+    console.log("RESPONSE!", response);
+    
 }
 
 return (

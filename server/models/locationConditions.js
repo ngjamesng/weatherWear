@@ -3,7 +3,9 @@ const db = require("../db");
 class LocationConditions {
   static async getCondition({ woeid, date }) {
     const conditionResponse = await db.query(
-      `SELECT conditions.woeid, 
+      `SELECT 
+        id, 
+        conditions.woeid, 
         city_name, 
         location_type, 
         applicable_date, 
@@ -21,8 +23,8 @@ class LocationConditions {
     return condition;
   }
 
-  static async addCondition({woeid, city_name, location_type, condition}) {
-    const {applicable_date, the_temp, wind_speed, weather_state_name} = condition;
+  static async addCondition({ woeid, city_name, location_type, condition }) {
+    const { applicable_date, the_temp, wind_speed, weather_state_name } = condition;
     const locationsResponse = await db.query(`
       INSERT INTO locations (
         woeid, city_name, location_type
@@ -36,14 +38,33 @@ class LocationConditions {
       woeid, applicable_date, the_temp, wind_speed, weather_state_name
     )
     values ($1, $2, $3, $4, $5)
-    RETURNING woeid, applicable_date, the_temp, wind_speed, weather_state_name;
-    `, [woeid, applicable_date, 
-      Math.round(the_temp), 
-      Math.round(wind_speed), 
+    RETURNING id, woeid, applicable_date, the_temp, wind_speed, weather_state_name;
+    `, [woeid, applicable_date,
+      Math.round(the_temp),
+      Math.round(wind_speed),
       weather_state_name]);
 
     const dbConditionResp = conditionResponse.rows[0];
     return dbConditionResp;
+  }
+
+  static async getConditionById(id) {
+    const conditionResponse = await db.query(
+      `SELECT 
+        id, 
+        conditions.woeid, 
+        city_name, 
+        location_type, 
+        applicable_date, 
+        the_temp, 
+        wind_speed, 
+        weather_state_name 
+      FROM conditions
+      JOIN locations ON conditions.woeid = locations.woeid
+      WHERE conditions.id= $1`
+      , [id]);
+    const condition = conditionResponse.rows;
+    return condition;
   }
 }
 
