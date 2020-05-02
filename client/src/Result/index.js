@@ -5,8 +5,7 @@ import { Media, Container } from "react-bootstrap";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import cToF from "../utils/tempConversion";
-
-
+import Reccomendation from "./Recommendation";
 const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weather/${abbr}.svg`;
 
 // {"id":2,"woeid":2487956,
@@ -24,8 +23,7 @@ function Result() {
   const tempPreference = useSelector(store => store.temperaturePreference);
 
   const displayTemp = (measurement, reading) => {
-    return measurement === "celsius"
-      ? reading : cToF(reading);
+    return measurement === "celsius" ? reading : cToF(reading);
   }
   const displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
 
@@ -33,7 +31,6 @@ function Result() {
     async function getResultFromAPI() {
       let res = await WeatherWearAPI.getResult(id);
       setData(res);
-      // console.log("RESULT DATA!", res)
     }
     getResultFromAPI();
   }, [id]);
@@ -57,7 +54,7 @@ function Result() {
           </p>
         </Media.Body>
       </Media>
-
+      <Reccomendation data={data}/>
     </Container>
   )
 }

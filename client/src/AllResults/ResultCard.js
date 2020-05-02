@@ -13,7 +13,7 @@ function ResultCard({ data, tempPreference }) {
   }
   const displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
   return (
-    <Card>
+    <Card className="mt-2">
       <Card.Body>
         <Media>
           <img

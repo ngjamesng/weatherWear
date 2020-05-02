@@ -18,7 +18,7 @@ function AllResults() {
 
   return (
     <Container>
-      <h2 className="mt-4 text-center">Here are the most recent results people looked for:</h2>
+      <h2 className="py-3 text-center">Here are the most recent results people looked for:</h2>
       <ul>
         {results.map(r => (
           <ResultCard

@@ -29,7 +29,7 @@ function Preferences() {
 
   return (
     <Container>
-      <h2 className="py-3 text-center">preferences</h2>
+      <h2 className="py-3 text-center">Preferences</h2>
       <Form.Group as={Row}>
         <Col sm={6}>
           <Form.Label as="legend">Temperature Preference</Form.Label>
