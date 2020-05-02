@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 const INITIAL_STATE = {
   location: "",
   date: `${moment().format("L")}`
 }
 function WeatherForm() {
   const [formData, setFormData] = useState(INITIAL_STATE);
-
+  const history = useHistory();
   const handleFormChange = evt => {
     const { name, value } = evt.target;
     setFormData(fData => ({
@@ -20,7 +21,7 @@ function WeatherForm() {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     let response = await WeatherWearAPI.submitQuery(formData);
-    console.log("RESPONSE!", response);
+    history.push(`/results/${response.id}`);
   }
 
   return (
