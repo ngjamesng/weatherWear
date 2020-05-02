@@ -21,8 +21,7 @@ function Preferences() {
   }
 
   const handleActivityLevelChange = evt => {
-    const { name, value } = evt.target;
-    console.log("CHANGED!", evt.target.name, evt.target.value)
+    const { value } = evt.target;
     value === "high"
       ? dispatch(changeToHighActivity())
       : dispatch(changeToLowActivity())
@@ -30,7 +29,7 @@ function Preferences() {
 
   return (
     <Container>
-      <h1>preferences page</h1>
+      <h2 className="py-3 text-center">preferences</h2>
       <Form.Group as={Row}>
         <Col sm={6}>
           <Form.Label as="legend">Temperature Preference</Form.Label>

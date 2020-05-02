@@ -3,6 +3,8 @@ import { Form, Button, Col, Container } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
+import Preferences from "../Preferences";
+
 const INITIAL_STATE = {
   location: "",
   date: `${moment().format("L")}`
@@ -41,6 +43,7 @@ function WeatherForm() {
               name="location"
               placeholder="San Francisco"
               onChange={handleFormChange}
+              required
             />
           </Form.Group>
           <Form.Group as={Col}>
@@ -49,11 +52,14 @@ function WeatherForm() {
               type="date"
               name="date"
               onChange={handleFormChange}
+              required
             />
           </Form.Group>
         </Form.Row>
+        <Preferences />
         <Button type="submit">Submit</Button>
       </Form>
+
     </Container>
   )
 }
