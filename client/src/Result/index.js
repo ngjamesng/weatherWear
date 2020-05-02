@@ -24,9 +24,9 @@ function Result() {
       console.log("RESULT DATA!", res)
     }
     getResultFromAPI();
-  }, []);
+  }, [id]);
   return (
-    <Container>
+    <Container className="mt-5">
       <Media>
         <img
           width={64}
@@ -39,7 +39,7 @@ function Result() {
           <h5>The weather in the {data.location_type} of {data.city_name}</h5>
           <p>
             Here's the weather on {moment(data.applicable_date).format("LL")}. <br />
-            temperature: {data.the_temp}. <br />
+            temperature: {data.the_temp} degrees {"Celsius"}. <br />
             wind speed: {data.wind_speed} mph.<br />
             The State of the weather: {data.weather_state_name}.<br />
           </p>

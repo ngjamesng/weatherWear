@@ -33,7 +33,8 @@ class LocationConditions {
       applicable_date, 
       the_temp, 
       wind_speed, 
-      weather_state_name 
+      weather_state_name,
+      weather_state_abbr 
     FROM conditions
     JOIN locations ON conditions.woeid = locations.woeid
     ORDER BY conditions.id DESC

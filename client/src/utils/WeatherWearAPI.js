@@ -30,7 +30,7 @@ class WeatherWearAPI {
   }
   /**get a list of past queries */
   static async getResults() {
-    let res = await this.request(`results`);
+    let res = await this.request(`weather`);
     return res;
   }
   /**get a single past weather query */
