@@ -29,7 +29,7 @@ function ResultCard({ data, tempPreference }) {
                 {moment(data.applicable_date).format("LL")} in {data.city_name}
               </Link>
             </h5>
-            <p>Temperature: {displayTemp(tempPreference, data.the_temp)} degrees {displayMeasurement(tempPreference)} |
+            <p>Temperature: {displayTemp(tempPreference, data.the_temp)}° {displayMeasurement(tempPreference)} |
           Wind speed: {data.wind_speed} mph | {" "}
               {data.weather_state_name}
             </p>

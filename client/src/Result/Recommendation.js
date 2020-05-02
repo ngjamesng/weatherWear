@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Media } from "react-bootstrap";
 
 
@@ -26,6 +26,8 @@ function Recommendation({ data }) {
       recommendations.push("Regular Shirt/T-Shirt");
     } else if (the_temp < 23) {
       recommendations.push("T-shirt/Tank Top");
+    } else {
+      recommendations.push("T-shirt/Tank Top");
     }
     if (wetConditions.has(weather_state_abbr)) recommendations.push("Rain Jacket");
     if (wind_speed > 9) recommendations.push("Windbreaker");
@@ -44,6 +46,8 @@ function Recommendation({ data }) {
       recommendations.push("Regular Pants/Shorts");
     } else if (the_temp < 23) {
       recommendations.push("Shorts");
+    } else {
+      recommendations.push("Shorts");
     }
     if (wetConditions.has(weather_state_abbr)) recommendations.push("Water-resistant bottoms");
     if (wind_speed > 10 && the_temp < 9) recommendations.push("Wind-resistant Pants");
@@ -51,7 +55,7 @@ function Recommendation({ data }) {
   }
 
   const FootwearRecommendations = data => {
-    const { the_temp, weather_state_abbr } = data;
+    const { weather_state_abbr } = data;
     let recommendations = [];
     wetConditions.has(weather_state_abbr)
       ? recommendations.push("Water-resistant Shoes")
@@ -60,7 +64,7 @@ function Recommendation({ data }) {
   }
 
   const accessories = data => {
-    const { the_temp, weather_state_abbr, wind_speed } = data;
+    const { the_temp, weather_state_abbr } = data;
     let recommendations = [];
     if(the_temp < 2) {
       recommendations.push("Gloves, Scarf, Warm Hat");
@@ -70,6 +74,8 @@ function Recommendation({ data }) {
     }
     if(brightConditions.has(weather_state_abbr)) {
       recommendations.push("Sunglasses, Hat");
+    } else {
+      recommendations.push("None");
     }
     return recommendations.join(", ");
   }
