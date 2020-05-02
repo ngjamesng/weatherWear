@@ -25,16 +25,17 @@ After weather information is received, the information is parsed and the program
 ## How to get started
 1. You will need to install npm and postgreSQL on your computer. I used homebrew for all installations. https://brew.sh/ 
 
-2. In the terminal, you will to go into the server folder and run `npm install`. Make sure you run `brew services start postgresql` as well as `psql weatherwear < data.sql` to create the database. 
-3. In the terminal, you will to go into the client folder and run `npm install`
+2. In the terminal, you will to go into the backend folder and run `npm install`. Make sure you run `brew services start postgresql` as well as `psql weatherwear < data.sql` to create the database. 
+3. In the terminal, you will to go into the frontend folder and run `npm install`
 
-### Server/Client servers
- 1. From the home directory in the terminal, run `cd server` to get into the server folder, and run `npm start`. This will locally start your server on port 3000. 
- 2. In  a separate terminal window, run `cd client` to get into the client folder, and run `npm start` and enter `y` when prompted. This will locally start your client app on port 3001. 
+### backend/frontend servers
+ 1. From the home directory in the terminal, run `cd backend` to get into the backend folder, and run `npm start`. This will locally start your backend on port 3000. 
+ 2. In  a separate terminal window, run `cd frontend` to get into the frontend folder, and run `npm start` and enter `y` when prompted. This will locally start your frontend app on port 3001. 
  3. 
  
 ## Technologies used
  * React.js
+ * Redux.js
  * Express.js
  * PostgreSQL
  * APIs & more!
