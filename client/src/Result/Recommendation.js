@@ -66,13 +66,13 @@ function Recommendation({ data }) {
   const accessories = data => {
     const { the_temp, weather_state_abbr } = data;
     let recommendations = [];
-    if(the_temp < 2) {
+    if (the_temp < 2) {
       recommendations.push("Gloves, Scarf, Warm Hat");
     }
-    if(wetConditions.has(weather_state_abbr)) {
+    if (wetConditions.has(weather_state_abbr)) {
       recommendations.push("Umbrella");
     }
-    if(brightConditions.has(weather_state_abbr)) {
+    if (brightConditions.has(weather_state_abbr)) {
       recommendations.push("Sunglasses, Hat");
     } else {
       recommendations.push("None");
@@ -85,10 +85,11 @@ function Recommendation({ data }) {
       <Media>
         <Media.Body>
           <h5>Your clothing recommendation for this day:</h5>
-          <p> Tops: {topRecommendation(data)}</p>
-          <p> Bottoms: {bottomRecommendations(data)}</p>
-          <p>Footwear: {FootwearRecommendations(data)}</p>
-          <p>Accessories: {accessories(data)}</p>
+          <p> Tops: {topRecommendation(data)} <br />
+              Bottoms: {bottomRecommendations(data)} <br />
+              Footwear: {FootwearRecommendations(data)} <br />
+              Accessories: {accessories(data)}
+          </p>
         </Media.Body>
       </Media>
     </>
