@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Media, Card } from "react-bootstrap";
 import moment from "moment";
+import cToF from "../utils/tempConversion";
+
 const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weather/${abbr}.svg`;
 
-function ResultCard({ data }) {
+function ResultCard({ data, tempPreference }) {
+  const displayTemp = (measurement, reading) => {
+    return measurement === "celsius"
+      ? reading : cToF(reading);
+  }
+  const displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
   return (
     <Card>
       <Card.Body>
@@ -22,7 +29,7 @@ function ResultCard({ data }) {
                 {moment(data.applicable_date).format("LL")} in {data.city_name}
               </Link>
             </h5>
-            <p>Temperature: {data.the_temp} degrees {"Celsius"} |
+            <p>Temperature: {displayTemp(tempPreference, data.the_temp)} degrees {displayMeasurement(tempPreference)} |
           Wind speed: {data.wind_speed} mph | {" "}
               {data.weather_state_name}
             </p>

@@ -3,6 +3,10 @@ import { useParams } from "react-router-dom";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 import { Media, Container } from "react-bootstrap";
 import moment from "moment";
+import { useSelector } from "react-redux";
+import cToF from "../utils/tempConversion";
+
+
 const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weather/${abbr}.svg`;
 
 // {"id":2,"woeid":2487956,
@@ -17,11 +21,19 @@ const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weat
 function Result() {
   const { id } = useParams();
   const [data, setData] = useState({});
+  const tempPreference = useSelector(store => store.temperaturePreference);
+
+  const displayTemp = (measurement, reading) => {
+    return measurement === "celsius"
+      ? reading : cToF(reading);
+  }
+  const displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
+
   useEffect(() => {
     async function getResultFromAPI() {
       let res = await WeatherWearAPI.getResult(id);
       setData(res);
-      console.log("RESULT DATA!", res)
+      // console.log("RESULT DATA!", res)
     }
     getResultFromAPI();
   }, [id]);
@@ -39,7 +51,7 @@ function Result() {
           <h5>The weather in the {data.location_type} of {data.city_name}</h5>
           <p>
             Here's the weather on {moment(data.applicable_date).format("LL")}. <br />
-            temperature: {data.the_temp} degrees {"Celsius"}. <br />
+            temperature: {displayTemp(tempPreference, data.the_temp)} degrees {displayMeasurement(tempPreference)}. <br />
             wind speed: {data.wind_speed} mph.<br />
             The State of the weather: {data.weather_state_name}.<br />
           </p>
