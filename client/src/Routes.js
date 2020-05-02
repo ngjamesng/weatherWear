@@ -3,7 +3,7 @@ import Home from "./Home";
 import WeatherForm from "./WeatherForm";
 import AllResults from "./AllResults";
 import Result from "./Result";
-import About from "./About";
+import Preferences from "./Preferences";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 function Routes() {
@@ -22,8 +22,8 @@ function Routes() {
         <Route exact path="/results">
           <AllResults />
         </Route>
-        <Route exact path="/about">
-          <About />
+        <Route exact path="/preferences">
+          <Preferences />
         </Route>
         <Redirect to="/" />
       </Switch>

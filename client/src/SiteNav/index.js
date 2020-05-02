@@ -19,8 +19,8 @@ function SiteNav() {
           <LinkContainer to="/results">
             <Nav.Link>Check Past Results </Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/about">
-            <Nav.Link> About </Nav.Link>
+          <LinkContainer to="/preferences">
+            <Nav.Link> Preferences </Nav.Link>
           </LinkContainer>
         </Nav>
       </Navbar.Collapse>
