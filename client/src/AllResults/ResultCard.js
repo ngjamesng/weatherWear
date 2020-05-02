@@ -7,26 +7,28 @@ const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weat
 function ResultCard({ data }) {
   return (
     <Card>
-      <Media>
-        <img
-          width={32}
-          height={32}
-          className="mr-3"
-          src={METAWEATHER_IMG_URL(data.weather_state_abbr)}
-          alt={data.weather_state_name}
-        />
-        <Media.Body>
-          <h5>
-            <Link to={`results/${data.id}`}>
-              {moment(data.applicable_date).format("LL")} in {data.city_name}
-            </Link>
-          </h5>
-          <p>Temperature: {data.the_temp} degrees {"Celsius"} |
+      <Card.Body>
+        <Media>
+          <img
+            width={32}
+            height={32}
+            className="mr-3"
+            src={METAWEATHER_IMG_URL(data.weather_state_abbr)}
+            alt={data.weather_state_name}
+          />
+          <Media.Body>
+            <h5>
+              <Link to={`results/${data.id}`}>
+                {moment(data.applicable_date).format("LL")} in {data.city_name}
+              </Link>
+            </h5>
+            <p>Temperature: {data.the_temp} degrees {"Celsius"} |
           Wind speed: {data.wind_speed} mph | {" "}
-            {data.weather_state_name}
-          </p>
-        </Media.Body>
-      </Media>
+              {data.weather_state_name}
+            </p>
+          </Media.Body>
+        </Media>
+      </Card.Body>
     </Card>
   )
 }
