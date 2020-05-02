@@ -23,6 +23,27 @@ class LocationConditions {
     return condition;
   }
 
+  static async getConditions(){
+    const conditionsResponse = await db.query(
+      `SELECT 
+      id, 
+      conditions.woeid, 
+      city_name, 
+      location_type, 
+      applicable_date, 
+      the_temp, 
+      wind_speed, 
+      weather_state_name 
+    FROM conditions
+    JOIN locations ON conditions.woeid = locations.woeid
+    ORDER BY conditions.id DESC
+    LIMIT 10
+    `,
+      []
+    )
+    return conditionsResponse.rows;
+  }
+
   static async addCondition({ woeid, city_name, location_type, condition }) {
     const { applicable_date, the_temp, wind_speed, weather_state_name, weather_state_abbr } = condition;
     const locationsResponse = await db.query(`

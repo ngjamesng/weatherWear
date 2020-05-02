@@ -12,7 +12,7 @@ router.post("/", async (req, res, next) => {
     let condition = await LocationConditions.getCondition({ woeid, date });
     if (!condition[0]) {
       const apiResp = await getWeatherFromAPI({ woeid, date });
-      const dbResp = await LocationConditions.addCondition({ woeid, city_name, location_type, condition:apiResp });
+      const dbResp = await LocationConditions.addCondition({ woeid, city_name, location_type, condition: apiResp });
       condition[0] = { ...dbResp, city_name };
     }
     return res.json(condition[0]);
@@ -21,13 +21,21 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async(req, res, next)=>{
+router.get("/", async (req, res, next)=>{
+  try {
+    let conditions = await LocationConditions.getConditions();
+    return res.json(conditions);
+  } catch(err){
+    return next(err);
+  }
+});
+
+router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     let condition = await LocationConditions.getConditionById(id);
-    console.log("CONDITION!", condition[0]);
     return res.json(condition[0]);
-  } catch(err){
+  } catch (err) {
     return next(err);
   }
 });

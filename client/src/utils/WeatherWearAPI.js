@@ -29,8 +29,8 @@ class WeatherWearAPI {
     }
   }
   /**get a list of past queries */
-  static async getResults(data) {
-    let res = await this.request(`results`, data);
+  static async getResults() {
+    let res = await this.request(`results`);
     return res;
   }
   /**get a single past weather query */
