@@ -1,10 +1,10 @@
 import React from "react";
-import { Form, Button, Col, Row, Container } from "react-bootstrap";
+import { Form, Col, Row, Container } from "react-bootstrap";
 function Preferences() {
   //use redux here to set global preferences
   const handlePreferenceChange = evt => {
     // const { name, value } = evt.target;
-    console.log("CHANGED!")
+    console.log("CHANGED!", evt.target.name, evt.target.value)
     //Set redux settings here!
   }
   return (
