@@ -5,18 +5,20 @@ const INITIAL_STATE = {
   activityLevel: "low"
 }
 
-function rootReducer(state = INITIAL_STATE, action){
+function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case TEMPERATURE_PREFERENCE:
       return {
-        ...state, 
+        ...state,
         temperaturePreference: action.payload.temperaturePreference
       }
     case ACTIVITY_LEVEL:
       return {
-        ...state, 
+        ...state,
         activityLevel: action.payload.activityLevel
       }
+    default:
+      return state;
   }
 }
 
