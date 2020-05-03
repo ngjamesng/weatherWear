@@ -11,13 +11,13 @@ class WeatherWearAPI {
 
     if (verb === "get") {
       q = axios.get(
-        `${BASE_URL}/${endpoint}`, { params: { ...params } });
+        `${BASE_URL}${endpoint}`, { params: { ...params } });
     } else if (verb === "post") {
       q = axios.post(
-        `${BASE_URL}/${endpoint}`, { ...params });
+        `${BASE_URL}${endpoint}`, { ...params });
     } else if (verb === "patch") {
       q = axios.patch(
-        `${BASE_URL}/${endpoint}`, { ...params });
+        `${BASE_URL}${endpoint}`, { ...params });
     }
 
     try {
