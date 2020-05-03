@@ -17,10 +17,13 @@ function SiteNav() {
             <Nav.Link>Check Weather </Nav.Link>
           </LinkContainer>
           <LinkContainer to="/results">
-            <Nav.Link>Check Past Results </Nav.Link>
+            <Nav.Link>Past Results </Nav.Link>
           </LinkContainer>
           <LinkContainer to="/preferences">
             <Nav.Link> Preferences </Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/preferences">
+            <Nav.Link> About </Nav.Link>
           </LinkContainer>
         </Nav>
       </Navbar.Collapse>

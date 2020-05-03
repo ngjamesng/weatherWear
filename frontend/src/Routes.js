@@ -4,6 +4,7 @@ import WeatherForm from "./WeatherForm";
 import AllResults from "./AllResults";
 import Result from "./Result";
 import Preferences from "./Preferences";
+import About from "./About";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 function Routes() {
@@ -24,6 +25,9 @@ function Routes() {
         </Route>
         <Route exact path="/preferences">
           <Preferences />
+        </Route>
+        <Route exact Path="/about">
+          <About />
         </Route>
         <Redirect to="/" />
       </Switch>
