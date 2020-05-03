@@ -37,5 +37,7 @@ After weather information is received, the information is parsed and the program
  * React.js
  * Redux.js
  * Express.js
+ * React Bootstrap
  * PostgreSQL
+ * MetaWeatherAPI https://www.metaweather.com/
  * APIs & more!
