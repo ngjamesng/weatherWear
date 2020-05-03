@@ -1,5 +1,8 @@
 # WeatherWear
  ***Project is WIP***
+ The Project is live & hosted. Feel free to have a look at it here: 
+https://weatherwear-frontend.herokuapp.com/
+
 
 ## About WeatherWear
 Do you ever step outside, only to realize you're unprepared for unexpected weather conditions? You'd have to go back inside to change what you're wearing, and maybe even bring an umbrella. WeatherWear is intended to help people get clothing recommendations based on weather conditions, such as temperature, humidity, wind speed, and precipitation. 
@@ -22,6 +25,10 @@ After weather information is received, the information is parsed and the program
 
 * Ability to recommend multiple locations at one time, across different days. This would be useful when traveling. 
 
+## Known issues
+
+* WeatherWear is unable to do every single location. However, for most major locations, WeatherWear will work fine. This is due to the API I chose to use. In the future, I may add more apparent error handling or use multiple sources for weather information. 
+
 ## How to get started
 1. You will need to install npm and postgreSQL on your computer. I used homebrew for all installations. https://brew.sh/ 
 
@@ -31,7 +38,8 @@ After weather information is received, the information is parsed and the program
 ### backend/frontend servers
  1. From the home directory in the terminal, run `cd backend` to get into the backend folder, and run `npm start`. This will locally start your backend on port 3000. 
  2. In  a separate terminal window, run `cd frontend` to get into the frontend folder, and run `npm start` and enter `y` when prompted. This will locally start your frontend app on port 3001. 
- 3. 
+
+ 3. Open your Browser to `localhost:3001` and you should be able to play with the site locally on your machine. 
  
 ## Technologies used
  * React.js
