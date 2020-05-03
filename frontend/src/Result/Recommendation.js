@@ -74,7 +74,8 @@ function Recommendation({ data }) {
     }
     if (brightConditions.has(weather_state_abbr)) {
       recommendations.push("Sunglasses, Hat");
-    } else {
+    }
+    if (!recommendations.length) {
       recommendations.push("None");
     }
     return recommendations.join(", ");

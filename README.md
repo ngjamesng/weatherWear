@@ -1,8 +1,12 @@
 # WeatherWear
  ***Project is WIP***
  The Project is live & hosted. Feel free to have a look at it here: 
-https://weatherwear-frontend.herokuapp.com/
+  
+  https://weatherwear-frontend.herokuapp.com/
 
+  A video demo can be watched here:
+  https://youtu.be/W5ITGxffAUI
+  
 
 ## About WeatherWear
 Do you ever step outside, only to realize you're unprepared for unexpected weather conditions? You'd have to go back inside to change what you're wearing, and maybe even bring an umbrella. WeatherWear is intended to help people get clothing recommendations based on weather conditions, such as temperature, humidity, wind speed, and precipitation. 

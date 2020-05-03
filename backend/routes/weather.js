@@ -21,11 +21,11 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/", async (req, res, next)=>{
+router.get("/", async (req, res, next) => {
   try {
     let conditions = await LocationConditions.getConditions();
     return res.json(conditions);
-  } catch(err){
+  } catch (err) {
     return next(err);
   }
 });
