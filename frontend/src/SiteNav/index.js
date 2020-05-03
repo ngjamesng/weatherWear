@@ -22,7 +22,7 @@ function SiteNav() {
           <LinkContainer to="/preferences">
             <Nav.Link> Preferences </Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/preferences">
+          <LinkContainer to="/about">
             <Nav.Link> About </Nav.Link>
           </LinkContainer>
         </Nav>
