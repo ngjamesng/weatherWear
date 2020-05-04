@@ -9,6 +9,14 @@ app.use(cors());
 
 app.use("/weather", weatherRouter);
 
+app.get("/cron", (req, res, next) => {
+  try {
+    return res.json({cronResponse:"CRON JOB SUCCESSFUL!"});
+  } catch (err) {
+    return next(err);
+  }
+})
+
 /** 404 handler */
 
 app.use(function (req, res, next) {
