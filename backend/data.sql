@@ -1,4 +1,4 @@
-\c weatherwear 
+\c weatherwear-metaweather 
 
 DROP TABLE IF EXISTS conditions;
 DROP TABLE IF EXISTS locations;
