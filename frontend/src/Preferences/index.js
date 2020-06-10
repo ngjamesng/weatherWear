@@ -10,10 +10,12 @@ import {
 } from "./actions"
 
 function Preferences({ type }) {
+  // functions for showing/hiding modal
   const [show, setShow] = useState(false),
     handleClose = () => setShow(false),
     handleShow = () => setShow(true);
 
+  //selectors, dispatchers, and functions for redux
   const tempPreference = useSelector(store => store.temperaturePreference),
     activityLevel = useSelector(store => store.activityLevel),
     dispatch = useDispatch(),
@@ -98,7 +100,7 @@ function Preferences({ type }) {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary">Close</Button>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
 
