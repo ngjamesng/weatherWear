@@ -6,12 +6,13 @@ require("dotenv").config();
 const SECRET = process.env.SECRET_KEY || 'test';
 
 const PORT = +process.env.PORT || 3000;
+const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
 
 // database is:
 //
 // - on Heroku, get from env var DATABASE_URL
-// - in testing, 'weatherwear-test'
-// - else: 'weatherwear'
+// - in testing, 'weatherwear-openweater-test'
+// - else: 'weatherwear-openweather'
 
 let DB_URI;
 
@@ -27,4 +28,5 @@ module.exports = {
   SECRET,
   PORT,
   DB_URI,
+  OPEN_WEATHER_API_KEY
 };
