@@ -2,9 +2,9 @@ import React from "react";
 import { Media, Card } from "react-bootstrap";
 import Skeleton from 'react-loading-skeleton';
 
-function SkeletonResultCard() {
+function SkeletonResultCard(idx) {
   return (
-    <Card className="mt-2">
+    <Card className="mt-2" key={idx}>
       <Card.Body>
         <Media>
           <Skeleton circle={true} height={32} width={32} />
