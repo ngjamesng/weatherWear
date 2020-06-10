@@ -20,7 +20,7 @@ function AllResults() {
   const skeletonResults = (num) => {
     let cards = [];
     for (let i = 0; i < num; i++) {
-      cards.push(SkeletonResultCard());
+      cards.push(SkeletonResultCard(i));
     }
     return cards;
   }
