@@ -56,7 +56,7 @@ function WeatherForm() {
             />
           </Form.Group>
         </Form.Row>
-        <Preferences />
+        <Preferences type={"WeatherForm"} /> {" "}
         <Button type="submit">Submit</Button>
       </Form>
 
