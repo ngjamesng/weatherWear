@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 // import "./SiteNav.scss";
 import { Navbar, Nav } from "react-bootstrap";
+import Preferences from "../Preferences";
 
 function SiteNav() {
   return (
@@ -19,9 +20,9 @@ function SiteNav() {
           <LinkContainer to="/results">
             <Nav.Link>Past Results </Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/preferences">
-            <Nav.Link> Preferences </Nav.Link>
-          </LinkContainer>
+          <div>
+            <Preferences type={"nav"}/>
+          </div>
           <LinkContainer to="/about">
             <Nav.Link> About </Nav.Link>
           </LinkContainer>
