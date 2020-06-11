@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Form, Button, Col, Container } from "react-bootstrap";
-import WeatherWearAPI from "../utils/WeatherWearAPI";
-import SubmissionForm from "./SubmissionForm";
+import { Container } from "react-bootstrap";
 
-import Preferences from "../Preferences";
+import { useSelector } from "react-redux";
+import cToF from "../utils/tempConversion";
+
+import SubmissionForm from "./SubmissionForm";
 import Result from "../Result";
 
-const INITIAL_STATE = {
-  cityOrZip: ""
-}
 function WeatherForm() {
 
   const [resultData, setResultData] = useState(null);
-
+  const tempPreference = useSelector(store => store.temperaturePreference),
+    displayTemp = (measurement, reading) => {
+      return measurement === "celsius" ? reading.toFixed(1) : cToF(reading).toFixed(1);
+    },
+    displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
 
 
   return (
@@ -22,8 +24,8 @@ function WeatherForm() {
           Fill out the information below and get your clothing recommendation.
         </p>
       </div>
-      <SubmissionForm setResultData={setResultData}/>
-      {resultData && Result(resultData)}
+      <SubmissionForm setResultData={setResultData} />
+      {resultData && Result({ resultData, tempPreference, displayTemp, displayMeasurement })}
     </Container>
   )
 }

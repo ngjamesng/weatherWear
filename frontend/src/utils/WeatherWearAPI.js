@@ -45,7 +45,6 @@ class WeatherWearAPI {
     let data = +cityOrZip <= 99999
       ? { zip: `${cityOrZip},us` }
       : { city: cityOrZip };
-
     let res = await this.request(`weather`, data, "post");
     return res;
   }
