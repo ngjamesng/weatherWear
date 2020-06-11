@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import { Form, Button, Col, Container } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
-import moment from "moment";
-import { useHistory } from "react-router-dom";
 import Preferences from "../Preferences";
+import Result from "../Result";
 
 const INITIAL_STATE = {
-  location: "",
-  date: `${moment().format("L")}`
+  cityOrZip: ""
 }
 function WeatherForm() {
-  const [formData, setFormData] = useState(INITIAL_STATE);
-  const history = useHistory();
-  const handleFormChange = evt => {
-    const { name, value } = evt.target;
-    setFormData(fData => ({
-      ...fData,
-      [name]: value
-    }));
-  }
+  const [formData, setFormData] = useState(INITIAL_STATE),
+    handleFormChange = evt => {
+      const { name, value } = evt.target;
+      console.log(name, value)
+      setFormData(fData => ({
+        ...fData,
+        [name]: value,
+      }));
+    }
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     let response = await WeatherWearAPI.submitQuery(formData);
-    history.push(`/results/${response.id}`);
+    console.log(response);
+    // history.push(`/results/${response.id}`);
   }
 
   return (
     <Container>
       <div className="py-3 text-center">
-        <h2>WeatherWear</h2>
         <p className="lead">
           Fill out the information below and get your clothing recommendation.
         </p>
@@ -40,17 +38,8 @@ function WeatherForm() {
             <Form.Label>Location</Form.Label>
             <Form.Control
               type="text"
-              name="location"
-              placeholder="San Francisco"
-              onChange={handleFormChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
+              name="cityOrZip"
+              placeholder="Enter a city or ZIP code..."
               onChange={handleFormChange}
               required
             />
