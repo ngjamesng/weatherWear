@@ -25,7 +25,11 @@ function WeatherForm() {
         </p>
       </div>
       <SubmissionForm setResultData={setResultData} />
-      {resultData && Result({ resultData, tempPreference, displayTemp, displayMeasurement })}
+      {resultData && <Result resultData={resultData}
+        tempPreference={tempPreference}
+        displayTemp={displayTemp}
+        displayMeasurement={displayMeasurement}
+      />}
     </Container>
   )
 }

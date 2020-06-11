@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import WeatherWearAPI from "../utils/WeatherWearAPI";
+import React from "react";
 import { Media, Container } from "react-bootstrap";
 import moment from "moment";
 
-import Recomendation from "./Recommendation";
+import Recommendation from "./Recommendation";
 const OPEN_WEATHER_IMG_URL = code => `http://openweathermap.org/img/wn/${code}@2x.png`;
 
-function Result({ resultData, tempPreference, displayTemp, displayMeasurement }) {
+function Result({ resultData: data, tempPreference, displayTemp, displayMeasurement }) {
 
   return (
     <Container className="mt-5">
@@ -16,20 +14,20 @@ function Result({ resultData, tempPreference, displayTemp, displayMeasurement })
           width={64}
           height={64}
           className="mr-3"
-          src={OPEN_WEATHER_IMG_URL(resultData.weather[0].icon)}
-          alt={resultData.weather[0].description}
+          src={OPEN_WEATHER_IMG_URL(data.weather[0].icon)}
+          alt={data.weather[0].description}
         />
         <Media.Body>
-          <h5>The weather in {resultData.name}</h5>
+          <h5>The weather in {data.name}</h5>
           <p>
-            Here's the weather on {moment.unix(resultData.dt + resultData.timezone).utc().format("LLL")}. <br />
-            temperature: {displayTemp(tempPreference, resultData.main.temp)}° {displayMeasurement(tempPreference)}. <br />
-            wind speed: {(resultData.wind.speed * 2.23694).toFixed(1)} mph.<br />
-            The weather has a {resultData.weather[0].description}.<br />
+            Here's the weather on {moment.unix(data.dt + data.timezone).utc().format("LLL")}. <br />
+            temperature: {displayTemp(tempPreference, data.main.temp)}° {displayMeasurement(tempPreference)}. <br />
+            wind speed: {(data.wind.speed * 2.23694).toFixed(1)} mph.<br />
+            The weather has a {data.weather[0].description}.<br />
           </p>
         </Media.Body>
       </Media>
-      {/* <Recomendation data={data}/> */}
+      <Recommendation data={data} />
     </Container>
   )
 }
