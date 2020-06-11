@@ -1,7 +1,7 @@
 import React from "react";
 import { Media } from "react-bootstrap";
 
-const hasWetConditions = condition => (200 <= condition && condition <= 700);
+const hasRainConditions = condition => (200 <= condition && condition <= 700);
 const hasBrightConditions = ({ condition, icon }) => (
   800 <= condition && condition <= 803 && icon.endsWith("d")
 )
@@ -23,7 +23,7 @@ const topRecommendation = data => {
   } else {
     recommendations.push("T-shirt, Tank Top");
   }
-  if (hasWetConditions(condition)) recommendations.push("Rain Jacket");
+  if (hasRainConditions(condition)) recommendations.push("Rain Jacket");
   if (windSpeed > 9) recommendations.push("Windbreaker");
 
   return recommendations.join(", ")
@@ -46,14 +46,14 @@ const bottomRecommendations = data => {
   } else {
     recommendations.push("Shorts");
   }
-  if (hasWetConditions(condition)) recommendations.push("Water-resistant bottoms");
+  if (hasRainConditions(condition)) recommendations.push("Water-resistant bottoms");
   if (windSpeed > 4.4 && temp < 9) recommendations.push("Wind-resistant Pants");
   return recommendations.join(", ");
 }
 const FootwearRecommendations = data => {
   const { id: condition } = data.weather[0];
   let recommendations = [];
-  hasWetConditions(condition)
+  hasRainConditions(condition)
     ? recommendations.push("Water-resistant Shoes")
     : recommendations.push("Regular Shoes");
   return recommendations.join(", ");
@@ -66,7 +66,7 @@ const accessories = data => {
   if (temp < 2) {
     recommendations.push("Gloves, Scarf, Warm Hat");
   }
-  if (hasWetConditions(condition)) {
+  if (hasRainConditions(condition)) {
     recommendations.push("Umbrella");
   }
   if (hasBrightConditions({ condition, icon })) {
@@ -86,7 +86,7 @@ function Recommendation({ data }) {
         <Media.Body>
           <h5>Your clothing recommendation for this day:</h5>
           <p> Tops: {topRecommendation(data)} <br />
-            Bottoms: {bottomRecommendations(data)} <br />
+              Bottoms: {bottomRecommendations(data)} <br />
               Footwear: {FootwearRecommendations(data)} <br />
               Accessories: {accessories(data)}
           </p>
