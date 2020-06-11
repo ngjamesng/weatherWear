@@ -7,6 +7,8 @@ import cToF from "../utils/tempConversion";
 import SubmissionForm from "./SubmissionForm";
 import Result from "../Result";
 
+
+
 function WeatherForm() {
 
   const [resultData, setResultData] = useState(null);

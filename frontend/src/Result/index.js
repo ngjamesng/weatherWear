@@ -23,7 +23,7 @@ function Result({ resultData: data, tempPreference, displayTemp, displayMeasurem
             Here's the weather on {moment.unix(data.dt + data.timezone).utc().format("LLL")}. <br />
             temperature: {displayTemp(tempPreference, data.main.temp)}° {displayMeasurement(tempPreference)}. <br />
             wind speed: {(data.wind.speed * 2.23694).toFixed(1)} mph.<br />
-            The weather has a {data.weather[0].description}.<br />
+            conditions: {data.weather[0].description}.<br />
           </p>
         </Media.Body>
       </Media>
