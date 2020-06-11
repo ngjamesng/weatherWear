@@ -17,7 +17,6 @@ function SubmissionForm({ setResultData }) {
         ...fData,
         [name]: value,
       }));
-      console.log(formData);
     },
     handleSubmit = async (evt) => {
       evt.preventDefault();
