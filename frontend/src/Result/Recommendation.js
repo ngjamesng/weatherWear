@@ -25,7 +25,7 @@ const topRecommendation = data => {
     recommendations.push("T-shirt, Tank Top");
   }
   if (hasRainConditions(condition)) recommendations.push("Rain Jacket");
-  if (windSpeed > 9) recommendations.push("Windbreaker");
+  if (windSpeed > 4.4) recommendations.push("Windbreaker");
 
   return recommendations.join(", ")
 }
