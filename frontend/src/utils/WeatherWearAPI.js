@@ -41,12 +41,12 @@ class WeatherWearAPI {
 
   /**submit a query of location and date */
   static async submitQuery({ cityOrZip }) {
-    let data = {
-      city: cityOrZip,
-      zip: cityOrZip
-    }
+
+    let data = +cityOrZip <= 99999
+      ? { zip: `${cityOrZip},us` }
+      : { city: cityOrZip };
+
     let res = await this.request(`weather`, data, "post");
-    console.log("Data from server call: ", res.data);
     return res;
   }
 }
