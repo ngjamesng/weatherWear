@@ -5,6 +5,7 @@ const hasRainConditions = condition => (200 <= condition && condition <= 700);
 const hasBrightConditions = ({ condition, icon }) => (
   800 <= condition && condition <= 803 && icon.endsWith("d")
 )
+const hasBadAirConditions = condition => (701 <= condition && condition <= 781);
 
 const topRecommendation = data => {
   const { temp } = data.main;
@@ -71,6 +72,9 @@ const accessories = data => {
   }
   if (hasBrightConditions({ condition, icon })) {
     recommendations.push("Sunglasses, Hat");
+  }
+  if(hasBadAirConditions(condition)) {
+    recommendations.push("Face Mask")
   }
 
   return recommendations.length
