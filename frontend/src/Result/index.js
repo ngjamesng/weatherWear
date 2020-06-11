@@ -8,7 +8,6 @@ import Recomendation from "./Recommendation";
 const OPEN_WEATHER_IMG_URL = code => `http://openweathermap.org/img/wn/${code}@2x.png`;
 
 function Result({ resultData, tempPreference, displayTemp, displayMeasurement }) {
-  console.log(resultData);
 
   return (
     <Container className="mt-5">
