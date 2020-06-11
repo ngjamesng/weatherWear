@@ -35,11 +35,7 @@ function Preferences({ type }) {
 
   const PreferencesButton = () => {
     return type === "nav"
-      ? (
-        <Nav.Link onClick={handleShow}>
-          Preferences
-        </Nav.Link>
-      )
+      ? <Nav.Link onClick={handleShow}>Preferences</Nav.Link>
       : <Button variant="secondary" onClick={handleShow}>Preferences</Button>
   }
 

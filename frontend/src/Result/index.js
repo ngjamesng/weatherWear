@@ -6,34 +6,59 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import cToF from "../utils/tempConversion";
 import Reccomendation from "./Recommendation";
-const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weather/${abbr}.svg`;
+const OPEN_WEATHER_IMG_URL = code => `http://openweathermap.org/img/wn/${code}@2x.png`;
 
-// {"id":2,"woeid":2487956,
-// "city_name":"San Francisco",
-// "location_type":"City",
-// "applicable_date":"2020-04-20T07:00:00.000Z",
-// "the_temp":16,
-// "wind_speed":9,
-// "weather_state_name":"Light Cloud"
-//weather_state_abbr: "c"
+// {
+//   "coord": {
+//     "lon": -122.41,
+//     "lat": 37.8
+//   },
+//   "weather": [
+//     {
+//       "id": 801,
+//       "main": "Clouds",
+//       "description": "few clouds",
+//       "icon": "02d"
+//     }
+//   ],
+//   "base": "stations",
+//   "main": {
+//     "temp": 20.29,
+//     "feels_like": 16.52,
+//     "temp_min": 16.67,
+//     "temp_max": 25.56,
+//     "pressure": 1019,
+//     "humidity": 44
+//   },
+//   "visibility": 16093,
+//   "wind": {
+//     "speed": 4.6,
+//     "deg": 280
+//   },
+//   "clouds": {
+//     "all": 20
+//   },
+//   "dt": 1591753854,
+//   "sys": {
+//     "type": 1,
+//     "id": 5154,
+//     "country": "US",
+//     "sunrise": 1591706844,
+//     "sunset": 1591759852
+//   },
+//   "timezone": -25200,
+//   "id": 0,
+//   "name": "San Francisco",
+//   "cod": 200
 // }
-function Result() {
-  const { id } = useParams();
-  const [data, setData] = useState({});
-  const tempPreference = useSelector(store => store.temperaturePreference);
+function Result(data) {
+  console.log(data)
+  // const tempPreference = useSelector(store => store.temperaturePreference),
+  //   displayTemp = (measurement, reading) => {
+  //     return measurement === "celsius" ? reading : cToF(reading);
+  //   },
+  //   displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
 
-  const displayTemp = (measurement, reading) => {
-    return measurement === "celsius" ? reading : cToF(reading);
-  }
-  const displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
-
-  useEffect(() => {
-    async function getResultFromAPI() {
-      let res = await WeatherWearAPI.getResult(id);
-      setData(res);
-    }
-    getResultFromAPI();
-  }, [id]);
   return (
     <Container className="mt-5">
       <Media>
@@ -41,20 +66,20 @@ function Result() {
           width={64}
           height={64}
           className="mr-3"
-          src={METAWEATHER_IMG_URL(data.weather_state_abbr)}
-          alt={data.weather_state_name}
+          src={OPEN_WEATHER_IMG_URL(data.weather[0].icon)}
+          // alt={data.weather_state_name}
         />
         <Media.Body>
-          <h5>The weather in the {data.location_type} of {data.city_name}</h5>
-          <p>
+          <h5>The weather in {data.name}</h5>
+          {/* <p>
             Here's the weather on {moment(data.applicable_date).format("LL")}. <br />
             temperature: {displayTemp(tempPreference, data.the_temp)}° {displayMeasurement(tempPreference)}. <br />
             wind speed: {data.wind_speed} mph.<br />
             The State of the weather: {data.weather_state_name}.<br />
-          </p>
+          </p> */}
         </Media.Body>
       </Media>
-      <Reccomendation data={data}/>
+      {/* <Reccomendation data={data}/> */}
     </Container>
   )
 }
