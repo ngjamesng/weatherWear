@@ -23,8 +23,9 @@ class WeatherWearAPI {
     try {
       return (await q).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      // console.error("API Error:", err.response);
       let message = err.response?.data.message;
+      console.log(err.response?.data)
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -40,7 +41,7 @@ class WeatherWearAPI {
   }
 
   /**submit a query of location and date */
-  static async submitQuery({ cityOrZip }) {
+  static async submitByCityOrZip({ cityOrZip }) {
 
     let data = +cityOrZip <= 99999
       ? { zip: `${cityOrZip},us` }
@@ -48,5 +49,11 @@ class WeatherWearAPI {
     let res = await this.request(`weather`, data, "post");
     return res;
   }
+
+  static async SubmitByCoordinates({lat, lon}){
+    let res = await this.request(`weather/coordinates`, {lat, lon}, "get");
+    return res;
+  }
+
 }
 export default WeatherWearAPI;

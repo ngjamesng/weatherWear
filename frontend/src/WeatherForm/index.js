@@ -1,49 +1,48 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import cToF from "../utils/tempConversion";
+import { Container, Card, Col } from "react-bootstrap";
 
-import SubmissionForm from "./SubmissionForm";
+
+import CityOrZipForm from "./CityOrZipForm";
+import CoordinateForm from "./CoordinateForm";
+import Preferences from "../Preferences";
 import Result from "../Result";
-
+import SkeletonResult from "./SkeletonResult";
 
 
 function WeatherForm() {
   const [resultData, setResultData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [coordinates, setCoordinates] = useState(null);
-  const tempPreference = useSelector(store => store.temperaturePreference),
-    displayTemp = (measurement, reading) => {
-      return measurement === "celsius" ? reading.toFixed(1) : cToF(reading).toFixed(1);
-    },
-    displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
 
-  const getLocationAndSubmit = () => {
-    navigator.geolocation.getCurrentPosition((p) => {
-      const { latitude, longitude } = p.coords;
-      setCoordinates({ lat: latitude, lon: longitude });
-    })
-  }
+
 
   return (
     <Container>
       <div className="py-3 text-center">
         <p className="lead">
           Fill out the information below and get your clothing recommendation.
+          WeatherWear can automatically get your location, or you can enter a city or zip code.
         </p>
       </div>
-      <SubmissionForm
-        setResultData={setResultData}
-        getLocationAndSubmit={getLocationAndSubmit}
-        coordinates={coordinates}
-      />
-      {coordinates && `${coordinates.lat} ${coordinates.lon}`}
-      {/* {`${latitude} ${longitude}`} */}
-      {resultData && <Result resultData={resultData}
-        tempPreference={tempPreference}
-        displayTemp={displayTemp}
-        displayMeasurement={displayMeasurement}
-      />}
+      <Card>
+        <Card.Body>
+          <CoordinateForm
+            setResultData={setResultData}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
+          <CityOrZipForm
+            setResultData={setResultData}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
+          <Col>
+            <Preferences type={"WeatherForm"} />
+          </Col>
+        </Card.Body>
+      </Card>
+      {(resultData || isLoading) &&
+        <Result resultData={resultData} isLoading={isLoading} />}
     </Container>
   )
 }

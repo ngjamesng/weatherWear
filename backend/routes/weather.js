@@ -7,7 +7,7 @@ const { getByNameOrZip, getByCoordinates } = require("../utils/openWeatherAPI");
 router.post("/", async (req, res, next) => {
   try {
     const { city, zip } = req.body;
-    if (!city && !zip) return next();
+    // if (!city && !zip) return next();
     const data = await getByNameOrZip({ city, zip });
     return res.json(data);
   } catch (err) {
@@ -17,8 +17,8 @@ router.post("/", async (req, res, next) => {
 
 router.get("/coordinates/", async (req, res, next) => {
   try {
-    const { lon, lat } = req.body;
-    if (!lon || !lat) return next();
+    const { lon, lat } = req.query;
+    // if (!lon || !lat) return next();
     const data = await getByCoordinates({lon, lat});
     return res.json(data);
   } catch (err) {

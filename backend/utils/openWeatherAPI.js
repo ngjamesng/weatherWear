@@ -1,6 +1,8 @@
 const axios = require('axios');
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 const { OPEN_WEATHER_API_KEY } = require("../config");
+const ExpressError = require('./expressError');
+
 
 async function getByNameOrZip({ city, zip }) {
   try {
@@ -15,11 +17,13 @@ async function getByNameOrZip({ city, zip }) {
     });
     return resp.data;
   } catch (err) {
-    console.error("error:", err);
+    const { cod: status, message } = err.response.data;
+    throw new ExpressError(message, status);
   }
 }
 
 async function getByCoordinates({ lon, lat }) {
+  console.log("GETBYCOORDINATESHIT", lon, lat)
   try {
     let resp = await axios.get(`${BASE_URL}weather`, {
       params: {
@@ -31,7 +35,8 @@ async function getByCoordinates({ lon, lat }) {
     })
     return resp.data
   } catch (err) {
-    console.error("error:", err);
+    const { cod: status, message } = err.response.data;
+    throw new ExpressError(message, status);
   }
 }
 
