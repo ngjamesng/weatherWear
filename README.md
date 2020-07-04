@@ -40,10 +40,10 @@ After weather information is received, the information is parsed and the program
 3. In the terminal, you will to go into the frontend folder with `cd frontend` and run `npm install`
 
 ### backend/frontend servers
- 1. From the home directory in the terminal, run `cd backend` to get into the backend folder, and run `npm start`. This will locally start your backend on port 3000. 
- 2. In  a separate terminal window, run `cd frontend` to get into the frontend folder, and run `npm start` and enter `y` when prompted. This will locally start your frontend app on port 3001. 
+ 1. From the home directory in the terminal, run `cd backend` to get into the backend folder, and run `npm start`. This will locally start your backend on port 3001. 
+ 2. In  a separate terminal window, run `cd frontend` to get into the frontend folder, and run `npm start`. This will start the front end server. 
 
- 3. Open your browser to `localhost:3001` and you should be able to play with the site locally on your machine. 
+ 3. Open your browser to `localhost:3000` and you should be able to play with the site locally on your machine. 
  
 ## Technologies used
  * React.js
