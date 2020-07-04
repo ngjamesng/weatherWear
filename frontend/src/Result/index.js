@@ -24,6 +24,10 @@ function Result({ resultData: data, tempPreference, displayTemp, displayMeasurem
             temperature: {displayTemp(tempPreference, data.main.temp)}° {displayMeasurement(tempPreference)}. <br />
             wind speed: {(data.wind.speed * 2.23694).toFixed(1)} mph.<br />
             conditions: {data.weather[0].description}.<br />
+            cloudiness: {data.clouds.all}% <br />
+            {data.rain && `rain volume for the last hour: ${data.rain["1h"]} mm ${<br />}`}
+            {data.snow && `snow volume for the last hour: ${data.snow["1h"]} mm ${<br />}`}
+            humidity: {data.main.humidity}%
           </p>
         </Media.Body>
       </Media>
