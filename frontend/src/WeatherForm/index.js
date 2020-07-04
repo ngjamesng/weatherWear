@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import cToF from "../utils/tempConversion";
 
@@ -11,17 +11,17 @@ import Result from "../Result";
 function WeatherForm() {
   const [resultData, setResultData] = useState(null);
 
-  const [coordinates, setCoordinates] = useState({ latitude: undefined, longitude: undefined });
+  const [coordinates, setCoordinates] = useState(null);
   const tempPreference = useSelector(store => store.temperaturePreference),
     displayTemp = (measurement, reading) => {
       return measurement === "celsius" ? reading.toFixed(1) : cToF(reading).toFixed(1);
     },
     displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
 
-  const getLocation = () => {
+  const getLocationAndSubmit = () => {
     navigator.geolocation.getCurrentPosition((p) => {
       const { latitude, longitude } = p.coords;
-      setCoordinates({latitude, longitude});
+      setCoordinates({ lat: latitude, lon: longitude });
     })
   }
 
@@ -32,9 +32,12 @@ function WeatherForm() {
           Fill out the information below and get your clothing recommendation.
         </p>
       </div>
-      <SubmissionForm setResultData={setResultData} />
-      <Button onClick={getLocation}> get Location </Button>
-      {coordinates.longitude && coordinates.latitude && `${coordinates.latitude} ${coordinates.longitude}`}
+      <SubmissionForm
+        setResultData={setResultData}
+        getLocationAndSubmit={getLocationAndSubmit}
+        coordinates={coordinates}
+      />
+      {coordinates && `${coordinates.lat} ${coordinates.lon}`}
       {/* {`${latitude} ${longitude}`} */}
       {resultData && <Result resultData={resultData}
         tempPreference={tempPreference}
