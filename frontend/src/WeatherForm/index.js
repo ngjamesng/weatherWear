@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Col, Accordion, Button } from "react-bootstrap";
+import { Container, Card, Col, Accordion, Button, Alert } from "react-bootstrap";
 
 
 import CityOrZipForm from "./CityOrZipForm";
@@ -10,12 +10,16 @@ import Result from "../Result";
 function WeatherForm() {
   const [resultData, setResultData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState(false);
+
+  useEffect(() => {
+    setErrors(false);
+  }, [resultData]);
 
   return (
     <Container>
       <div className="py-3 text-center">
         <p className="lead">
-          Fill out the information below and get your clothing recommendation.
           WeatherWear can automatically get your location, or you can enter a city or zip code.
         </p>
       </div>
@@ -32,11 +36,13 @@ function WeatherForm() {
                 setResultData={setResultData}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                setErrors={setErrors}
               />
               <CityOrZipForm
                 setResultData={setResultData}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                setErrors={setErrors}
               />
               <Col>
                 <Preferences type={"WeatherForm"} />
@@ -53,8 +59,15 @@ function WeatherForm() {
           </Card.Body>
         </Card>
       }
-
-
+      {errors.length &&
+        errors.map((e, idx) =>
+          <Alert
+            onClose={() => setErrors(false)}
+            key={`${e}-${idx}`}
+            variant={"warning"}
+            dismissible>{e}
+          </Alert>)
+      }
     </Container>
   )
 }
