@@ -23,9 +23,10 @@ class WeatherWearAPI {
     try {
       return (await q).data;
     } catch (err) {
-      // console.error("API Error:", err.response);
-      let message = err.response?.data.message;
-      console.log(err.response?.data)
+      // console.error("API Error:", err);
+      // let message = err.response?.data.message;
+      // console.log(err.message)
+      let message = err.response?.data.message || err.message;
       throw Array.isArray(message) ? message : [message];
     }
   }
