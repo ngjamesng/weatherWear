@@ -23,7 +23,6 @@ async function getByNameOrZip({ city, zip }) {
 }
 
 async function getByCoordinates({ lon, lat }) {
-  console.log("GETBYCOORDINATESHIT", lon, lat)
   try {
     let resp = await axios.get(`${BASE_URL}weather`, {
       params: {
