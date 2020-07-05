@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   cityOrZip: ""
 }
 
-function CityOrZipForm({ setResultData, isLoading, setIsLoading }) {
+function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors }) {
 
   //handle form data and submission
   const [formData, setFormData] = useState(INITIAL_STATE),
@@ -22,12 +22,13 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading }) {
       try {
         setIsLoading(true);
         let response = await WeatherWearAPI.submitByCityOrZip(formData);
-        console.log("RESPONSE!!!!", response);
         setResultData(response);
         setIsLoading(false);
       } catch (err) {
         console.log(err);
+        setErrors(err);
         setIsLoading(false);
+        setResultData(null);
       }
     }
   return (
@@ -51,7 +52,7 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading }) {
       <Accordion.Toggle
           as={Button}
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading  || formData.cityOrZip.length ===0 }
           eventKey={0}
         >
           Get!

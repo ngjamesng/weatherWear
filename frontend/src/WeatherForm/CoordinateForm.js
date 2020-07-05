@@ -2,27 +2,25 @@ import React, { useState } from "react";
 import { Form, Button, Col, InputGroup, Accordion } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 
-function CoordinateForm({ setResultData, isLoading, setIsLoading }) {
+function CoordinateForm({ setResultData, isLoading, setIsLoading, setErrors }) {
   const [coordinates, setCoordinates] = useState(null);
 
-  const getLocationAndSubmit = () => {
-    try {
-      setIsLoading(true);
-      const handleSubmit = async (coordinates) => {
-        let response = await WeatherWearAPI.submitByCoordinates(coordinates);
-        setResultData(response);
-        setIsLoading(false);
-      }
-      navigator.geolocation.getCurrentPosition((p) => {
+  const getLocationAndSubmit = async () => {
+    setIsLoading(true);
+    navigator.geolocation.getCurrentPosition(async (p) => {
+      try {
         const { latitude: lat, longitude: lon } = p.coords;
         setCoordinates({ lat, lon });
-        handleSubmit({ lat, lon });
-      })
-
-    } catch (err) {
-      console.log(err);
-      setIsLoading(false);
-    }
+        let response = await WeatherWearAPI.submitByCoordinates({lat, lon});
+        setResultData(response);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+        setErrors(err);
+        setResultData(null);
+        setIsLoading(false);
+      }
+    })
   }
 
   return (
