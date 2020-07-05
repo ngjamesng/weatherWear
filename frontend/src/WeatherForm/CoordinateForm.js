@@ -9,7 +9,7 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading }) {
     try {
       setIsLoading(true);
       const handleSubmit = async (coordinates) => {
-        let response = await WeatherWearAPI.SubmitByCoordinates(coordinates);
+        let response = await WeatherWearAPI.submitByCoordinates(coordinates);
         setResultData(response);
         setIsLoading(false);
       }
