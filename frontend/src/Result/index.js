@@ -50,7 +50,7 @@ function Result({ resultData: data, isLoading }) {
           </Media.Body>
         }
       </Media>
-      {data && <Recommendation data={data} />}
+      {data && !isLoading && <Recommendation data={data} />}
     </Container>
   )
 }

@@ -50,8 +50,8 @@ class WeatherWearAPI {
     return res;
   }
 
-  static async SubmitByCoordinates({lat, lon}){
-    let res = await this.request(`weather/coordinates`, {lat, lon}, "get");
+  static async submitByCoordinates({ lat, lon }) {
+    let res = await this.request(`weather/coordinates`, { lat, lon }, "get");
     return res;
   }
 

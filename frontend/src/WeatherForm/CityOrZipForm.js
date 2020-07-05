@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Col, InputGroup } from "react-bootstrap";
+import { Form, Button, Col, InputGroup, Accordion } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 
 const INITIAL_STATE = {
@@ -27,25 +27,35 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading }) {
         setIsLoading(false);
       } catch (err) {
         console.log(err);
+        setIsLoading(false);
       }
     }
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group as={Col}>
-        <Form.Label>... or Manually enter a location</Form.Label>
+        <Form.Label>... or alternatively, enter a city or ZIP code. </Form.Label>
         <InputGroup>
           <Form.Control
             type="text"
             name="cityOrZip"
-            placeholder="Enter a city or ZIP code..."
+            placeholder="Enter a city or ZIP code."
             onChange={handleFormChange}
             required={true}
+            disabled={isLoading}
           />
         </InputGroup>
       </Form.Group>
       <Form.Group as={Col}>
 
-      <Button type="submit" disabled={isLoading}>Get by City or Zip</Button> {" "}
+      {/* <Button type="submit" disabled={isLoading}>Get by City or Zip</Button> {" "} */}
+      <Accordion.Toggle
+          as={Button}
+          type="submit"
+          disabled={isLoading}
+          eventKey={0}
+        >
+          Get!
+      </Accordion.Toggle>
       </Form.Group>
 
     </Form>

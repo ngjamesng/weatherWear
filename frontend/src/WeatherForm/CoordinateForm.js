@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Col, InputGroup } from "react-bootstrap";
+import { Form, Button, Col, InputGroup, Accordion } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 
 function CoordinateForm({ setResultData, isLoading, setIsLoading }) {
@@ -13,7 +13,7 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading }) {
         setResultData(response);
         setIsLoading(false);
       }
-      navigator.geolocation.getCurrentPosition( (p) => {
+      navigator.geolocation.getCurrentPosition((p) => {
         const { latitude: lat, longitude: lon } = p.coords;
         setCoordinates({ lat, lon });
         handleSubmit({ lat, lon });
@@ -21,27 +21,34 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading }) {
 
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
     }
   }
 
   return (
     <Form>
       <Form.Group as={Col}>
-        <Form.Label>Get By Coordinates</Form.Label>
+
+        <Form.Label>Automatically get location</Form.Label>
         <InputGroup>
           <Form.Control
             type="text"
             name="coordinates"
             value={coordinates ? `${coordinates.lat.toFixed(2)}, ${coordinates.lon.toFixed(2)}` : ""}
-            placeholder={"Your coordinates show here..."}
+            placeholder={"your coordinates will show here. "}
             disabled
           />
-          {/* <InputGroup.Prepend> */}
-          {/* </InputGroup.Prepend> */}
         </InputGroup>
       </Form.Group>
       <Form.Group as={Col}>
-        <Button onClick={getLocationAndSubmit} disabled={isLoading}>get!</Button>
+        <Accordion.Toggle
+          as={Button}
+          onClick={getLocationAndSubmit}
+          disabled={isLoading}
+          eventKey={0}
+        >
+          Get!
+      </Accordion.Toggle>
       </Form.Group>
     </Form>
   )
