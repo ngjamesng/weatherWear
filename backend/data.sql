@@ -1,20 +1,20 @@
 \c weatherwear-openweather 
 
-DROP TABLE IF EXISTS conditions;
-DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS results_trips;
+DROP TABLE IF EXISTS results;
+DROP TABLE IF EXISTS trips;
 
-CREATE TABLE locations (
-    WOEID integer PRIMARY KEY,
-    city_name text NOT NULL,
-    location_type text NOT NULL
+CREATE TABLE results (
+  id SERIAL PRIMARY KEY,
+  data JSONB
 );
 
-CREATE TABLE conditions (
+CREATE TABLE trips (
   id SERIAL PRIMARY KEY,
-  WOEID integer REFERENCES locations(WOEID),
-  applicable_date date, 
-  the_temp integer, 
-  wind_speed float,
-  weather_state_name text NOT NULL,
-  weather_state_abbr text NOT NULL
+  author_name VARCHAR(50)
+);
+
+CREATE TABLE results_trips (
+  trip_id INTEGER REFERENCES trips ON DELETE CASCADE,
+  query_id INTEGER REFERENCES results ON DELETE CASCADE
 );

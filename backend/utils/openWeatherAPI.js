@@ -18,7 +18,7 @@ async function getByNameOrZip({ city, zip }) {
     return resp.data;
   } catch (err) {
     const { cod: status, message } = err.response.data;
-    throw new ExpressError(message, status);
+    throw new ExpressError(`${message}: ${city || zip}`, status);
   }
 }
 

@@ -1,20 +1,36 @@
 const express = require("express");
 const router = express.Router();
-// const LocationConditions = require("../models/locationConditions");
+const Results = require("../models/Results");
 const { getByNameOrZip, getByCoordinates } = require("../utils/openWeatherAPI");
 
-/** handle submission form from frontend */
+router.get("/", async (req, res, next)=>{
+  try {
+    let data = await Results.getResults();
+    return res.json(data);
+  } catch (err) {
+    return next(err);
+  }
+})
+
+/** handle city or zip submission form from frontend as a POST request */
 router.post("/", async (req, res, next) => {
   try {
     const { city, zip } = req.body;
     // if (!city && !zip) return next();
     const data = await getByNameOrZip({ city, zip });
+    Results.addResult(data);
     return res.json(data);
   } catch (err) {
     return next(err);
   }
 });
 
+/**
+ * 
+ *  handle coordinates submission from frontend as a GET request. 
+ * We do not want to save coordinate data because of privacy!!! 
+ * 
+ * */
 router.get("/coordinates/", async (req, res, next) => {
   try {
     const { lon, lat } = req.query;
