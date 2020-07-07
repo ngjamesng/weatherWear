@@ -23,13 +23,31 @@ class Results {
   }
 
   static async addResult(data) {
-    const result = await db.query(
-      `INSERT INTO results (data)
-      VALUES ($1)
-      RETURNING id, data
-      `, [data]
-    );
-    return result.rows[0];
+    const { name, dt } = data;
+    const responseFromDatabase = await db.query(
+      `
+      SELECT id, data from results 
+      WHERE data @> $1
+      ORDER BY id DESC
+      LIMIT 1;
+      `, [JSON.stringify({ name: name })]
+    )
+
+    if (responseFromDatabase.rows.length) {
+      // if less than 1 hour in the same city return
+      const { dt: responseDt } = responseFromDatabase.rows[0].data;
+      if (dt - responseDt < 3600) return;
+    } else {
+      // else add to the database 
+      const result = await db.query(
+        `INSERT INTO results (data)
+        VALUES ($1)
+        RETURNING id, data
+        `, [data]
+      );
+      return result.rows[0];
+    }
+
   }
 
 }

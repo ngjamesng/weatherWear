@@ -5,9 +5,6 @@ import moment from "moment";
 import cToF from "../utils/tempConversion";
 import OPEN_WEATHER_IMG_URL from "../utils/ImgUrl";
 
-
-const METAWEATHER_IMG_URL = abbr => `https://www.metaweather.com/static/img/weather/${abbr}.svg`;
-
 function ResultCard({ data, tempPreference }) {
   const displayTemp = (measurement, reading) => {
     return measurement === "celsius"

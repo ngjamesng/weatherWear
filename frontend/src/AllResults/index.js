@@ -7,13 +7,16 @@ import { useSelector } from "react-redux";
 
 
 function AllResults() {
+  const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const temperaturePreference = useSelector(store => store.temperaturePreference);
 
   useEffect(() => {
+    setIsLoading(true);
     async function getResults() {
       let resp = await WeatherWearAPI.getResults();
       setResults(resp);
+      setIsLoading(false);
     };
     getResults();
   }, []);
@@ -32,15 +35,16 @@ function AllResults() {
         <p className="lead">Here are the most recent results people looked for:</p>
       </div>
       <ul>
-        {results.length ?
-          results.map(r => (
+        {isLoading
+          ? skeletonResults(5)
+          : results.map(r => (
             <ResultCard
               data={r.data}
               key={r.id}
               tempPreference={temperaturePreference}
             />))
-          : skeletonResults(5)
         }
+        {!isLoading && !results.length && <p>sorry, no results found. Try checking the weather to see results!</p>}
       </ul>
     </Container>
   )
