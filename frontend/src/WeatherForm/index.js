@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Card, Col, Accordion, Button, Alert } from "react-bootstrap";
-
 
 import CityOrZipForm from "./CityOrZipForm";
 import CoordinateForm from "./CoordinateForm";
@@ -11,6 +10,13 @@ function WeatherForm() {
   const [resultData, setResultData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const formIsActive = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      formIsActive.current = false;
+    }
+  }, []);
 
   return (
     <Container>
@@ -33,12 +39,14 @@ function WeatherForm() {
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 setErrors={setErrors}
+                formIsActive={formIsActive}
               />
               <CityOrZipForm
                 setResultData={setResultData}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 setErrors={setErrors}
+                formIsActive={formIsActive}
               />
               <Col>
                 <Preferences type={"WeatherForm"} />
@@ -50,20 +58,19 @@ function WeatherForm() {
       {(resultData || isLoading) &&
         <Card>
           <Card.Body>
-
             <Result resultData={resultData} isLoading={isLoading} />
           </Card.Body>
         </Card>
       }
-      {!!errors &&
-        errors.map((e, idx) =>
-          <Alert
-            onClose={() => setErrors(false)}
-            key={`${e}-${idx}`}
-            variant={"warning"}
-            dismissible>{e}
-          </Alert>)
-      }
+      {errors?.map((e, idx) =>
+        <Alert
+          onClose={() => setErrors([])}
+          key={`${e}-${idx}`}
+          variant={"warning"}
+          dismissible
+        >
+          {e}
+        </Alert>)}
     </Container>
   )
 }

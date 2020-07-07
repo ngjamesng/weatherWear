@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Col, InputGroup, Accordion } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   cityOrZip: ""
 }
 
-function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors }) {
+function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, formIsActive }) {
 
   //handle form data and submission
   const [formData, setFormData] = useState(INITIAL_STATE),
@@ -23,13 +23,17 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors }) {
     try {
       setIsLoading(true);
       let response = await WeatherWearAPI.submitByCityOrZip(formData);
-      setResultData(response);
-      setErrors(null);
+      if (formIsActive.current) {
+        setResultData(response);
+        setErrors(null);
+      }
     } catch (err) {
-      setResultData(null);
-      setErrors(err);
+      if(formIsActive.current){
+        setResultData(null);
+        setErrors(err);
+      }
     } finally {
-      setIsLoading(false);
+      formIsActive.current && setIsLoading(false);
     }
   }
   return (
