@@ -11,7 +11,7 @@ function ResultCard({ data, tempPreference }) {
     return measurement === "celsius"
       ? reading : cToF(reading);
   }
-  const displayMeasurement = measurement => measurement === "celsius" ? "C" : "F";
+
   return (
     <Card className="mt-2">
       <Card.Body>
@@ -29,8 +29,8 @@ function ResultCard({ data, tempPreference }) {
                 {moment(data.applicable_date).format("LL")} in {data.city_name}
               </Link>
             </h5>
-            <p>Temperature: {displayTemp(tempPreference, data.the_temp)}° {displayMeasurement(tempPreference)} |
-          Wind speed: {data.wind_speed} mph | {" "}
+            <p>Temperature: {displayTemp(tempPreference, data.the_temp)}° {tempPreference === "celsius" ? "C" : "F"} |
+              Wind speed: {data.wind_speed} mph | {" "}
               {data.weather_state_name}
             </p>
           </Media.Body>

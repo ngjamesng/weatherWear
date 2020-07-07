@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 function AllResults() {
   const [results, setResults] = useState([]);
   const temperaturePreference = useSelector(store => store.temperaturePreference);
-
+  console.log("LOADING!")
   useEffect(() => {
     (async function getResults() {
       let resp = await WeatherWearAPI.getResults();
@@ -27,7 +27,9 @@ function AllResults() {
 
   return (
     <Container>
-      <h2 className="py-3 text-center">Here are the most recent results people looked for:</h2>
+      <div className="py-3 text-center">
+        <p className="lead">Here are the most recent results people looked for:</p>
+      </div>
       <ul>
         {results.length ?
           results.map(r => (
