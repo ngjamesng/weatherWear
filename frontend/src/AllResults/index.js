@@ -9,12 +9,13 @@ import { useSelector } from "react-redux";
 function AllResults() {
   const [results, setResults] = useState([]);
   const temperaturePreference = useSelector(store => store.temperaturePreference);
-  console.log("LOADING!")
+
   useEffect(() => {
-    (async function getResults() {
+    async function getResults() {
       let resp = await WeatherWearAPI.getResults();
       setResults(resp);
-    })();
+    };
+    getResults();
   }, []);
 
   const skeletonResults = (num) => {
@@ -34,7 +35,7 @@ function AllResults() {
         {results.length ?
           results.map(r => (
             <ResultCard
-              data={r}
+              data={r.data}
               key={r.id}
               tempPreference={temperaturePreference}
             />))

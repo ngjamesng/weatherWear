@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Col, InputGroup, Accordion } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 

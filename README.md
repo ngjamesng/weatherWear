@@ -36,7 +36,7 @@ After weather information is received, the information is parsed and the program
 ## How to get started
 1. You will need to install npm and postgreSQL on your computer. I used homebrew for all installations. https://brew.sh/ 
 
-2. In the terminal, you will to go into the backend folder with `cd backend` and run `npm install`. Make sure you run `brew services start postgresql`, `createdb weatherwear-openweather` as well as `psql weatherwear < data.sql` to create the database. 
+2. In the terminal, you will to go into the backend folder with `cd backend` and run `npm install`. Make sure you run `brew services start postgresql`, `createdb weatherwear-openweather` as well as `psql weatherwear-openweather < data.sql` to create the database. 
 3. In the terminal, you will to go into the frontend folder with `cd frontend` and run `npm install`
 
 ### backend/frontend servers

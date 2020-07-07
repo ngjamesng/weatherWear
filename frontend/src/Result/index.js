@@ -4,10 +4,10 @@ import moment from "moment";
 
 import { useSelector } from "react-redux";
 import cToF from "../utils/tempConversion";
+import OPEN_WEATHER_IMG_URL from "../utils/ImgUrl";
 
 import Recommendation from "./Recommendation";
 import Skeleton from "react-loading-skeleton";
-const OPEN_WEATHER_IMG_URL = code => `http://openweathermap.org/img/wn/${code}@2x.png`;
 
 function Result({ resultData: data, isLoading }) {
 
