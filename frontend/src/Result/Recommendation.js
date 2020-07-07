@@ -14,18 +14,18 @@ const topRecommendation = data => {
 
   let recommendations = [];
   if (temp < 2) {
-    recommendations.push("Heavy Jacket");
+    recommendations.push("Heavy Jacket 🧥");
   } else if (temp < 10) {
-    recommendations.push("Light Jacket");
+    recommendations.push("Light Jacket 🥼");
   } else if (temp < 19) {
-    recommendations.push("Regular Shirt, T-Shirt");
+    recommendations.push("Regular shirt, T-Shirt 👕");
   } else if (temp < 23) {
-    recommendations.push("T-shirt, Tank Top");
+    recommendations.push("T-shirt, Tank Top 🎽");
   } else {
-    recommendations.push("T-shirt, Tank Top");
+    recommendations.push("T-shirt, Tank Top 🎽");
   }
-  if (hasRainConditions(condition)) recommendations.push("Rain Jacket");
-  if (windSpeed > 4.4) recommendations.push("Windbreaker");
+  if (hasRainConditions(condition)) recommendations.push("Rain Jacket 🧥");
+  if (windSpeed > 4.4) recommendations.push("Windbreaker 🧥");
 
   return recommendations.join(", ")
 }
@@ -37,26 +37,26 @@ const bottomRecommendations = data => {
 
   let recommendations = [];
   if (temp < 2) {
-    recommendations.push("Thick Pants");
+    recommendations.push("Thick Pants 👖");
   } else if (temp < 10) {
-    recommendations.push("Regular pants");
+    recommendations.push("Regular pants 👖");
   } else if (temp < 19) {
-    recommendations.push("Regular Pants, Shorts");
+    recommendations.push("Regular Pants 👖, Shorts 🩳");
   } else if (temp < 23) {
-    recommendations.push("Shorts");
+    recommendations.push("Shorts 🩳");
   } else {
-    recommendations.push("Shorts");
+    recommendations.push("Shorts 🩳");
   }
-  if (hasRainConditions(condition)) recommendations.push("Water-resistant bottoms");
-  if (windSpeed > 4.4 && temp < 9) recommendations.push("Wind-resistant Pants");
+  if (hasRainConditions(condition)) recommendations.push("Water-resistant bottoms 👖");
+  if (windSpeed > 4.4 && temp < 9) recommendations.push("Wind-resistant Pants 👖");
   return recommendations.join(", ");
 }
 const FootwearRecommendations = data => {
   const { id: condition } = data.weather[0];
   let recommendations = [];
   hasRainConditions(condition)
-    ? recommendations.push("Water-resistant Shoes")
-    : recommendations.push("Regular Shoes");
+    ? recommendations.push("Water-resistant Shoes 🥾")
+    : recommendations.push("Regular Shoes 👟");
   return recommendations.join(", ");
 }
 
@@ -65,16 +65,16 @@ const accessories = data => {
   const { id: condition, icon } = data.weather[0];
   let recommendations = [];
   if (temp < 2) {
-    recommendations.push("Gloves, Scarf, Warm Hat");
+    recommendations.push("Gloves 🧤, Scarf 🧣, Warm Hat 🧢");
   }
   if (hasRainConditions(condition)) {
-    recommendations.push("Umbrella");
+    recommendations.push("Umbrella ☂️ 🌂");
   }
   if (hasBrightConditions({ condition, icon })) {
-    recommendations.push("Sunglasses, Hat");
+    recommendations.push("Sunglasses 🕶  😎 , Hat 🧢 , sunscreen🧴");
   }
   if(hasBadAirConditions(condition)) {
-    recommendations.push("Face Mask")
+    recommendations.push("Face Mask 😷")
   }
 
   return recommendations.length
