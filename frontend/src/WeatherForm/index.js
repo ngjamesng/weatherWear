@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Card, Col, Accordion, Button, Alert } from "react-bootstrap";
 
 
@@ -10,11 +10,7 @@ import Result from "../Result";
 function WeatherForm() {
   const [resultData, setResultData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState(false);
-
-  useEffect(() => {
-    setErrors(false);
-  }, [resultData]);
+  const [errors, setErrors] = useState([]);
 
   return (
     <Container>
@@ -59,7 +55,7 @@ function WeatherForm() {
           </Card.Body>
         </Card>
       }
-      {errors.length &&
+      {!!errors &&
         errors.map((e, idx) =>
           <Alert
             onClose={() => setErrors(false)}

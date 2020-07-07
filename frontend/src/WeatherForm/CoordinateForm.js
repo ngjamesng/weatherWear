@@ -11,13 +11,13 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading, setErrors }) {
       try {
         const { latitude: lat, longitude: lon } = p.coords;
         setCoordinates({ lat, lon });
-        let response = await WeatherWearAPI.submitByCoordinates({lat, lon});
+        let response = await WeatherWearAPI.submitByCoordinates({ lat, lon });
         setResultData(response);
-        setIsLoading(false);
+        setErrors(null);
       } catch (err) {
-        console.log(err);
-        setErrors(err);
         setResultData(null);
+        setErrors(err);
+      } finally {
         setIsLoading(false);
       }
     })

@@ -16,21 +16,22 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors }) {
         ...fData,
         [name]: value,
       }));
-    },
-    handleSubmit = async (evt) => {
-      evt.preventDefault();
-      try {
-        setIsLoading(true);
-        let response = await WeatherWearAPI.submitByCityOrZip(formData);
-        setResultData(response);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-        setErrors(err);
-        setIsLoading(false);
-        setResultData(null);
-      }
+    };
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    try {
+      setIsLoading(true);
+      let response = await WeatherWearAPI.submitByCityOrZip(formData);
+      setResultData(response);
+      setErrors(null);
+    } catch (err) {
+      setResultData(null);
+      setErrors(err);
+    } finally {
+      setIsLoading(false);
     }
+  }
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group as={Col}>
@@ -48,11 +49,10 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors }) {
       </Form.Group>
       <Form.Group as={Col}>
 
-      {/* <Button type="submit" disabled={isLoading}>Get by City or Zip</Button> {" "} */}
-      <Accordion.Toggle
+        <Accordion.Toggle
           as={Button}
           type="submit"
-          disabled={isLoading  || formData.cityOrZip.length ===0 }
+          disabled={isLoading || formData.cityOrZip.length === 0}
           eventKey={0}
         >
           Get!
