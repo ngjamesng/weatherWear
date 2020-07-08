@@ -39,12 +39,13 @@ function AllResults() {
           ? skeletonResults(5)
           : results.map(r => (
             <ResultCard
+              id={r.id}
               data={r.data}
               key={r.id}
               tempPreference={temperaturePreference}
             />))
         }
-        {!isLoading && !results.length && <p>sorry, no results found. Try checking the weather to see results!</p>}
+        {!isLoading && !results.length && <p>sorry, no results found. Try checking the weather by city or ZIP to see results!</p>}
       </ul>
     </Container>
   )

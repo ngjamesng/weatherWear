@@ -28,7 +28,7 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, form
         setErrors(null);
       }
     } catch (err) {
-      if(formIsActive.current){
+      if (formIsActive.current) {
         setResultData(null);
         setErrors(err);
       }
@@ -40,6 +40,9 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, form
     <Form onSubmit={handleSubmit}>
       <Form.Group as={Col}>
         <Form.Label>... or alternatively, enter a city or ZIP code. </Form.Label>
+        <Form.Text className="text-muted">
+          Searching by city or zip will saved to the database. 
+        </Form.Text>
         <InputGroup>
           <Form.Control
             type="text"
@@ -49,6 +52,7 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, form
             required={true}
             disabled={isLoading}
           />
+
         </InputGroup>
       </Form.Group>
       <Form.Group as={Col}>

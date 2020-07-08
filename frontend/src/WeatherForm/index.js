@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Container, Card, Col, Accordion, Button, Alert } from "react-bootstrap";
+import moment from "moment";
+import { Container, Card, Col, Accordion, Button, Alert, Toast } from "react-bootstrap";
 
 import CityOrZipForm from "./CityOrZipForm";
 import CoordinateForm from "./CoordinateForm";
@@ -63,14 +64,19 @@ function WeatherForm() {
         </Card>
       }
       {errors?.map((e, idx) =>
-        <Alert
-          onClose={() => setErrors([])}
+        <Toast
+          style={{ position: 'absolute', bottom: 20, right: 20, }}
           key={`${e}-${idx}`}
-          variant={"warning"}
-          dismissible
+          onClose={() => setErrors(errors.filter((err, i) => i !== idx))}
         >
-          {e}
-        </Alert>)}
+          <Toast.Header>
+            <strong className="mr-auto">error </strong>
+            <small>{moment().fromNow()}.</small>
+          </Toast.Header>
+          <Toast.Body>
+            <Alert variant="warning">{e}</Alert>
+          </Toast.Body>
+        </Toast>)}
     </Container>
   )
 }

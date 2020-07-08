@@ -5,7 +5,7 @@ import moment from "moment";
 import cToF from "../utils/tempConversion";
 import OPEN_WEATHER_IMG_URL from "../utils/ImgUrl";
 
-function ResultCard({ data, tempPreference }) {
+function ResultCard({id, data, tempPreference }) {
   const displayTemp = (measurement, reading) => {
     return measurement === "celsius"
       ? reading.toFixed(1) : cToF(reading).toFixed(1);
@@ -24,7 +24,7 @@ function ResultCard({ data, tempPreference }) {
           />
           <Media.Body>
             <h5>
-              <Link to={`results/${data.id}`}>
+              <Link to={`results/${id}`}>
                 {moment.unix(data?.dt + data?.timezone).utc().format("LL")} in {data.name}
               </Link>
             </h5>

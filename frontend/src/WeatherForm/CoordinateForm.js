@@ -34,13 +34,16 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading, setErrors, for
       <Form.Group as={Col}>
 
         <Form.Label>Automatically get location</Form.Label>
+        <Form.Text className="text-muted">
+          Your coordinates will NOT be saved to the database if you automatically get location.
+        </Form.Text>
         <InputGroup>
           <Form.Control
             type="text"
             name="coordinates"
             value={coordinates ? `${coordinates.lat.toFixed(2)}, ${coordinates.lon.toFixed(2)}` : ""}
             placeholder={"your coordinates will show here. "}
-            disabled
+            readOnly
           />
         </InputGroup>
       </Form.Group>
@@ -51,7 +54,7 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading, setErrors, for
           disabled={isLoading}
           eventKey={0}
         >
-          Get!
+          Get by coordinates!
       </Accordion.Toggle>
       </Form.Group>
     </Form>
