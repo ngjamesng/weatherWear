@@ -18,7 +18,7 @@ function About() {
           <li><a href="https://react-bootstrap.netlify.app/" target="blank">React Bootstrap</a></li>
           <li><a href="https://expressjs.com/" target="blank">Express.js</a></li>
           <li><a href="https://www.postgresql.org/" target="blank">PostgreSQL</a></li>
-          <li><a href="https://www.metaweather.com/" target="blank">MetaWeatherAPI</a></li>
+          <li><a href="https://openweathermap.org/api" target="blank">OpenWeatherMap API</a></li>
         </ul>
           You can see more of my work here: <a href="https://jamesng.dev" target="blank">Jamesng.dev</a>
       </Container>
