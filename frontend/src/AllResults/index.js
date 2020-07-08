@@ -3,20 +3,26 @@ import { Container } from "react-bootstrap";
 import WeatherWearAPI from "../utils/WeatherWearAPI";
 import ResultCard from "./ResultCard";
 import SkeletonResultCard from "./SkeletonResultCard";
+import ErrorToast from "../ErrorToast";
+
 import { useSelector } from "react-redux";
 
-
 function AllResults() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [results, setResults] = useState([]);
   const temperaturePreference = useSelector(store => store.temperaturePreference);
 
   useEffect(() => {
-    setIsLoading(true);
     async function getResults() {
-      let resp = await WeatherWearAPI.getResults();
-      setResults(resp);
-      setIsLoading(false);
+      try {
+        let resp = await WeatherWearAPI.getResults();
+        setResults(resp);
+      } catch (err) {
+        setErrors(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getResults();
   }, []);
@@ -45,8 +51,17 @@ function AllResults() {
               tempPreference={temperaturePreference}
             />))
         }
-        {!isLoading && !results.length && <p>sorry, no results found. Try checking the weather by city or ZIP to see results!</p>}
+        {!isLoading && !results.length && <p>sorry, no results found. Try adding some by checking the weather to see results!</p>}
       </ul>
+      {errors?.map((e, idx) => (
+        <ErrorToast
+          key={`${e}-${idx}`}
+          message={e}
+          errors={errors}
+          setErrors={setErrors}
+          errorId={idx}
+        />
+      ))}
     </Container>
   )
 }

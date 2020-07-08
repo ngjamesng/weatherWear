@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import moment from "moment";
-import { Container, Card, Col, Accordion, Button, Alert, Toast } from "react-bootstrap";
+import { Container, Card, Col, Accordion, Button } from "react-bootstrap";
 
 import CityOrZipForm from "./CityOrZipForm";
 import CoordinateForm from "./CoordinateForm";
 import Preferences from "../Preferences";
 import Result from "../Result";
+import ErrorToast from "../ErrorToast";
 
 function WeatherForm() {
   const [resultData, setResultData] = useState(null);
@@ -64,19 +64,14 @@ function WeatherForm() {
         </Card>
       }
       {errors?.map((e, idx) =>
-        <Toast
-          style={{ position: 'absolute', bottom: 20, right: 20, }}
+        <ErrorToast
           key={`${e}-${idx}`}
-          onClose={() => setErrors(errors.filter((err, i) => i !== idx))}
-        >
-          <Toast.Header>
-            <strong className="mr-auto">error </strong>
-            <small>{moment().fromNow()}.</small>
-          </Toast.Header>
-          <Toast.Body>
-            <Alert variant="warning">{e}</Alert>
-          </Toast.Body>
-        </Toast>)}
+          message={e}
+          errors={errors}
+          setErrors={setErrors}
+          errorId={idx}
+        />
+      )}
     </Container>
   )
 }
