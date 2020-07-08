@@ -25,7 +25,7 @@ function ResultCard({id, data, tempPreference }) {
           <Media.Body>
             <h5>
               <Link to={`results/${id}`}>
-                {moment.unix(data?.dt).fromNow()} in {data.name}
+                In {data.name}, {moment.unix(data?.dt).fromNow()}
               </Link>
             </h5>
             <p>
