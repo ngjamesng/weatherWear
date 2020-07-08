@@ -5,7 +5,7 @@ import moment from "moment";
 import cToF from "../utils/tempConversion";
 import OPEN_WEATHER_IMG_URL from "../utils/ImgUrl";
 
-function ResultCard({id, data, tempPreference }) {
+function ResultCard({ id, data, tempPreference, showDetails }) {
   const displayTemp = (measurement, reading) => {
     return measurement === "celsius"
       ? reading.toFixed(1) : cToF(reading).toFixed(1);
@@ -24,12 +24,18 @@ function ResultCard({id, data, tempPreference }) {
           />
           <Media.Body>
             <h5>
-              <Link to={`results/${id}`}>
+              <Link to={`results/${id}`}
+                onClick={e => {
+                  e.preventDefault();
+                  showDetails(data);
+                }}
+              
+              >
                 In {data.name}, {moment.unix(data?.dt).fromNow()}
               </Link>
             </h5>
             <p>
-            {moment.unix(data?.dt + data?.timezone).utc().format("LL")} |
+              {moment.unix(data?.dt + data?.timezone).utc().format("LL")} |
               Temperature: {(data?.main.temp) && displayTemp(tempPreference, data?.main.temp)}° {tempPreference === "celsius" ? "C" : "F"} |
               Wind: {(data?.wind.speed * 2.23694).toFixed(1)} mph | {" "}
               {data?.weather[0].description}
