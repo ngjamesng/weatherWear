@@ -25,10 +25,12 @@ function ResultCard({id, data, tempPreference }) {
           <Media.Body>
             <h5>
               <Link to={`results/${id}`}>
-                {moment.unix(data?.dt + data?.timezone).utc().format("LL")} in {data.name}
+                {moment.unix(data?.dt).fromNow()} in {data.name}
               </Link>
             </h5>
-            <p>Temperature: {(data?.main.temp) && displayTemp(tempPreference, data?.main.temp)}° {tempPreference === "celsius" ? "C" : "F"} |
+            <p>
+            {moment.unix(data?.dt + data?.timezone).utc().format("LL")} |
+              Temperature: {(data?.main.temp) && displayTemp(tempPreference, data?.main.temp)}° {tempPreference === "celsius" ? "C" : "F"} |
               Wind: {(data?.wind.speed * 2.23694).toFixed(1)} mph | {" "}
               {data?.weather[0].description}
             </p>
