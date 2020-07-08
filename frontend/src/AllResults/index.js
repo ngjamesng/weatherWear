@@ -42,7 +42,7 @@ function AllResults() {
   return (
     <Container>
       <div className="py-3 text-center">
-        <p className="lead">Here are the most recent results people looked for:</p>
+        <p className="lead">Here are the most recent results people looked for, from all over the world:</p>
       </div>
       <ul>
         {isLoading
