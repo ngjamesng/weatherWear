@@ -39,6 +39,11 @@ After weather information is received, the information is parsed and the program
 2. In the terminal, you will to go into the backend folder with `cd backend` and run `npm install`. Make sure you run `brew services start postgresql`, `createdb weatherwear-openweather` as well as `psql weatherwear-openweather < data.sql` to create the database. 
 3. In the terminal, you will to go into the frontend folder with `cd frontend` and run `npm install`
 
+4. In the `/backend` folder, you will need a .env file. You will also need to sign up for an openweathermap API key for the app to run properly. Your .env file should contain the following:
+```
+OPEN_WEATHER_API_KEY=REPLACE_WITH_YOUR_API_KEY_HERE
+```
+
 ### backend/frontend servers
  1. From the home directory in the terminal, run `cd backend` to get into the backend folder, and run `npm start`. This will locally start your backend on port 3001. 
  2. In  a separate terminal window, run `cd frontend` to get into the frontend folder, and run `npm start`. This will start the front end server. 
