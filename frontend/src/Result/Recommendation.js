@@ -20,9 +20,9 @@ const topRecommendation = data => {
   } else if (temp < 19) {
     recommendations.push("Regular shirt, T-Shirt 👕");
   } else if (temp < 23) {
-    recommendations.push("T-shirt, Tank Top 🎽");
+    recommendations.push("T-shirt 👕 , Tank Top 🎽");
   } else {
-    recommendations.push("T-shirt, Tank Top 🎽");
+    recommendations.push("T-shirt 👕 , Tank Top 🎽");
   }
   if (hasRainConditions(condition)) recommendations.push("Rain Jacket 🧥");
   if (windSpeed > 4.4) recommendations.push("Windbreaker 🧥");
