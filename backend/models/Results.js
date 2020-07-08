@@ -17,7 +17,8 @@ class Results {
       `SELECT 
       id, 
       data
-    FROM results`, []
+    FROM results
+    ORDER BY id DESC`, []
     )
     return results.rows;
   }
@@ -34,19 +35,20 @@ class Results {
     )
 
     if (responseFromDatabase.rows.length) {
-      // if less than 1 hour in the same city return
       const { dt: responseDt } = responseFromDatabase.rows[0].data;
+      console.log("dt-responsedt < 3600? ", !!(dt - responseDt < 3600))
+      // if less than 1 hour in the same city return
       if (dt - responseDt < 3600) return;
-    } else {
-      // else add to the database 
-      const result = await db.query(
-        `INSERT INTO results (data)
+    }
+    
+    // else add to the database 
+    const result = await db.query(
+      `INSERT INTO results (data)
         VALUES ($1)
         RETURNING id, data
         `, [data]
-      );
-      return result.rows[0];
-    }
+    );
+    return result.rows[0];
 
   }
 
