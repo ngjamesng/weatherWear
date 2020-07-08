@@ -41,7 +41,7 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, form
       <Form.Group as={Col}>
         <Form.Label>... or alternatively, enter a city or ZIP code. </Form.Label>
         <Form.Text className="text-muted">
-          Searching by city or zip will saved to the database. 
+          Searching by city or zip will save your results to the database. 
         </Form.Text>
         <InputGroup>
           <Form.Control

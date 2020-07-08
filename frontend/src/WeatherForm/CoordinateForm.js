@@ -35,7 +35,7 @@ function CoordinateForm({ setResultData, isLoading, setIsLoading, setErrors, for
 
         <Form.Label>Automatically get location</Form.Label>
         <Form.Text className="text-muted">
-          Your coordinates will NOT be saved to the database if you automatically get location.
+          Your coordinates or results will NOT be saved to the database if you automatically get location.
         </Form.Text>
         <InputGroup>
           <Form.Control

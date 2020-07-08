@@ -7,7 +7,7 @@ import Preferences from "../Preferences";
 
 function SiteNav() {
   return (
-    <Navbar bg="light" expand="sm">
+    <Navbar bg="light" expand="sm" collapseOnSelect>
       <Navbar.Brand>
         <Link to="/">WeatherWear</Link>
       </Navbar.Brand>
@@ -21,7 +21,7 @@ function SiteNav() {
             <Nav.Link>Past Results </Nav.Link>
           </LinkContainer>
           <div>
-            <Preferences type={"nav"}/>
+            <Preferences type={"nav"} />
           </div>
           <LinkContainer to="/about">
             <Nav.Link> About </Nav.Link>
