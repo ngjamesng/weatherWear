@@ -36,7 +36,6 @@ class Results {
 
     if (responseFromDatabase.rows.length) {
       const { dt: responseDt } = responseFromDatabase.rows[0].data;
-      console.log("dt-responsedt < 3600? ", !!(dt - responseDt < 3600))
       // if less than 1 hour in the same city return
       if (dt - responseDt < 3600) return;
     }
