@@ -11,11 +11,11 @@ function WeatherForm() {
   const [resultData, setResultData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  const formIsActive = useRef(true);
+  const _formIsActive = useRef(true);
 
   useEffect(() => {
     return () => {
-      formIsActive.current = false;
+      _formIsActive.current = false;
     }
   }, []);
 
@@ -40,14 +40,14 @@ function WeatherForm() {
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 setErrors={setErrors}
-                formIsActive={formIsActive}
+                _formIsActive={_formIsActive}
               />
               <CityOrZipForm
                 setResultData={setResultData}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 setErrors={setErrors}
-                formIsActive={formIsActive}
+                _formIsActive={_formIsActive}
               />
               <Col>
                 <Preferences type={"WeatherForm"} />

@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   cityOrZip: ""
 }
 
-function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, formIsActive }) {
+function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, _formIsActive }) {
 
   //handle form data and submission
   const [formData, setFormData] = useState(INITIAL_STATE),
@@ -23,17 +23,18 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, form
     try {
       setIsLoading(true);
       let response = await WeatherWearAPI.submitByCityOrZip(formData);
-      if (formIsActive.current) {
+      if (_formIsActive.current) {
         setResultData(response);
         setErrors(null);
       }
     } catch (err) {
-      if (formIsActive.current) {
+      if (_formIsActive.current) {
+        console.log("CATCH CALLED")
         setResultData(null);
         setErrors(err);
       }
     } finally {
-      formIsActive.current && setIsLoading(false);
+      _formIsActive.current && setIsLoading(false);
     }
   }
   return (
