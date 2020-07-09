@@ -29,7 +29,6 @@ function CityOrZipForm({ setResultData, isLoading, setIsLoading, setErrors, _for
       }
     } catch (err) {
       if (_formIsActive.current) {
-        console.log("CATCH CALLED")
         setResultData(null);
         setErrors(err);
       }
