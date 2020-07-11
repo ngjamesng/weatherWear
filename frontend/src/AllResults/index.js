@@ -60,7 +60,7 @@ function AllResults() {
       </ul>
       {
         <Modal
-          show={currentResult}
+          show={!!currentResult}
           onHide={() => setCurrentResult(null)}
         >
           <Modal.Header closeButton>
