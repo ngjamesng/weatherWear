@@ -2,7 +2,7 @@
  ***Project is WIP***
  The Project is live & hosted. Feel free to have a look at it here: 
   
-  https://weatherwear-frontend.herokuapp.com/
+  https://weatherwear.jamesng.dev/
 
   A video demo can be watched here:
   https://youtu.be/W5ITGxffAUI
