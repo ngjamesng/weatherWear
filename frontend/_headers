@@ -1,2 +1,2 @@
 /*
-  Access-Control-Allow-Origin: https://weatherwear-backend.herokuapp.com/
+  Access-Control-Allow-Origin: *
