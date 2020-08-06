@@ -4,11 +4,19 @@ import { LinkContainer } from "react-router-bootstrap";
 // import "./SiteNav.scss";
 import { Navbar, Nav } from "react-bootstrap";
 import Preferences from "../Preferences";
+import logo from "../images/logo192.png";
 
 function SiteNav() {
   return (
     <Navbar bg="light" expand="sm" collapseOnSelect>
       <Navbar.Brand>
+      <img
+        alt=""
+        src={logo}
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+      />{" "}
         <Link to="/">WeatherWear</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
