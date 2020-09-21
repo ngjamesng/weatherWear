@@ -51,7 +51,7 @@ const bottomRecommendations = data => {
   if (windSpeed > 4.4 && temp < 9) recommendations.push("Wind-resistant Pants 👖");
   return recommendations.join(", ");
 }
-const FootwearRecommendations = data => {
+const footwearRecommendations = data => {
   const { id: condition } = data.weather[0];
   let recommendations = [];
   hasRainConditions(condition)
@@ -91,7 +91,7 @@ function Recommendation({ data }) {
           <h5>Your clothing recommendation for this day:</h5>
           <p> Tops: {topRecommendation(data)} <br />
               Bottoms: {bottomRecommendations(data)} <br />
-              Footwear: {FootwearRecommendations(data)} <br />
+              Footwear: {footwearRecommendations(data)} <br />
               Accessories: {accessories(data)}
           </p>
         </Media.Body>
