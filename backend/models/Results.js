@@ -18,7 +18,8 @@ class Results {
       id, 
       data
     FROM results
-    ORDER BY id DESC`, []
+    ORDER BY id DESC
+    LIMIT 25`, []
     )
     return results.rows;
   }
